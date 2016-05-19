@@ -10,6 +10,7 @@ class Account(models.Model):
 
     user = models.ForeignKey(User)
     total = models.FloatField(blank=True, default=0)
+    limit = models.FloatField(blank=True, default=0)
 
     class Meta:
         app_label = 'treasurer'
