@@ -63,3 +63,5 @@ n.py
 dump.rdb
 *.*~
 .idea/
+media/
+static/

@@ -9,6 +9,7 @@ from treasurer.models import Transaction
 class Account(models.Model):
 
     user = models.ForeignKey(User)
+    name = models.CharField(max_length=255)
     total = models.FloatField(blank=True, default=0)
     limit = models.FloatField(blank=True, default=0)
 
