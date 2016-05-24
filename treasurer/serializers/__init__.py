@@ -1,1 +1,2 @@
-from treasurer.serializers.account import Account
+from treasurer.serializers.account import AccountSerializer
+from treasurer.serializers.user import UserSerializer

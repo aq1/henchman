@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -8,7 +7,7 @@ from treasurer.models import Transaction
 
 class Account(models.Model):
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey('auth.User', related_name='accounts')
     name = models.CharField(max_length=255)
     total = models.FloatField(blank=True, default=0)
     limit = models.FloatField(blank=True, default=0)

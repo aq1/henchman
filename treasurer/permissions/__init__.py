@@ -1,0 +1,1 @@
+from treasurer.permissions.is_owner_or_read_only import IsOwnerOrReadOnly
