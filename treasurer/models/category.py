@@ -7,3 +7,6 @@ class Category(models.Model):
 
     class Meta:
         app_label = 'treasurer'
+
+    def __str__(self):
+        return self.name

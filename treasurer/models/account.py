@@ -15,6 +15,9 @@ class Account(models.Model):
     class Meta:
         app_label = 'treasurer'
 
+    def __str__(self):
+        return '{self.user} "{self.name}" {self.total}'.format(self=self)
+
 
 @receiver(post_save, sender=Transaction)
 def recalculate_total(sender, **kwargs):

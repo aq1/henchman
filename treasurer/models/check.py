@@ -8,3 +8,6 @@ class Check(models.Model):
 
     class Meta:
         app_label = 'treasurer'
+
+    def __str__(self):
+        return 'Check {self.id}'.format(self=self)

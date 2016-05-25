@@ -6,6 +6,7 @@ from treasurer.models import Account
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     accounts = serializers.PrimaryKeyRelatedField(many=True, queryset=Account.objects.all())
 
     class Meta:

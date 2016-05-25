@@ -3,7 +3,6 @@ from rest_framework import permissions
 
 from treasurer.models import Account
 from treasurer.serializers import AccountSerializer
-from treasurer.permissions import IsOwnerOrReadOnly
 
 
 class AccountViewSet(viewsets.ModelViewSet):
@@ -13,8 +12,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     """
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly,)
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
