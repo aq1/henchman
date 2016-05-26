@@ -1,12 +1,11 @@
 from django.db import models
 
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from treasurer.models import Transaction
 
 
 class Account(models.Model):
-
     user = models.ForeignKey('auth.User', related_name='accounts')
     name = models.CharField(max_length=255)
     total = models.FloatField(blank=True, default=0)
@@ -19,8 +18,12 @@ class Account(models.Model):
         return '{self.user} "{self.name}" {self.total}'.format(self=self)
 
 
-@receiver(post_save, sender=Transaction)
-def recalculate_total(sender, **kwargs):
+@receiver(pre_save, sender=Transaction)
+def recalculate_total(**kwargs):
+    diff = float(kwargs['instance'].total)
+    if kwargs['instance'].id:
+        diff -= Transaction.objects.get(id=kwargs['instance'].id).total
+
     acc = Account.objects.get(id=kwargs['instance'].account_id)
-    acc.total += float(kwargs['instance'].total)
+    acc.total += diff
     acc.save()
