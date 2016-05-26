@@ -5,8 +5,8 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    url(r'^', include('treasurer.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^', include('treasurer.urls')),
 ]
 
 if settings.DEBUG:
