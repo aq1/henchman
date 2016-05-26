@@ -64,4 +64,5 @@ dump.rdb
 *.*~
 .idea/
 media/
-static/
+/static/
+bower_components

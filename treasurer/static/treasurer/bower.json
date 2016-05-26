@@ -1,0 +1,22 @@
+{
+  "name": "treasurer",
+  "homepage": "https://github.com/aq1/henchman",
+  "authors": [
+    "Vlad Grech <inmosh@yandex.ru>"
+  ],
+  "description": "App for money management",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-material": "^1.0.9"
+  }
+}
