@@ -18,5 +18,9 @@
   "dependencies": {
     "angular": "^1.5.5",
     "angular-material": "^1.0.9"
+  },
+  "devDependencies": {
+    "material-design-icons": "^2.2.3",
+    "restangular": "^1.5.2"
   }
 }

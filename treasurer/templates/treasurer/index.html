@@ -6,17 +6,22 @@
 </head>
 <body ng-app="treasurerApp" ng-cloak layout="column">
 <md-toolbar>
-    Toolbar
+    <h1>Henchman</h1>
 </md-toolbar>
-<div flex layout="row">
-    <md-sidenav flex="15" md-is-locked-open="true" class="md-whiteframe-z1">
-        <md-content>
-            Sidebar
-        </md-content>
+<div class="container" layout="row" flex>
+    <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+        <md-list>
+            <md-list-item>
+                <md-button>
+                    <md-icon>account_balance_wallet</md-icon>
+                    Управление финансами
+                </md-button>
+            </md-list-item>
+        </md-list>
     </md-sidenav>
-    <div layout="column" flex>
+    <md-content id="content" flex>
         Content
-    </div>
+    </md-content>
 </div>
 </body>
 {% load staticfiles %}
@@ -27,4 +32,6 @@
 <script src="{% static 'treasurer/app/treasurer.js' %}"></script>
 
 <link rel="stylesheet" href="{% static 'treasurer/bower_components/angular-material/angular-material.min.css' %}">
+<link rel="stylesheet" href="{% static 'treasurer/css/base.css' %}">
+<link rel="stylesheet" href="{% static 'treasurer/css/font.css' %}">
 </html>
