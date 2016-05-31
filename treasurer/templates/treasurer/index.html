@@ -4,9 +4,30 @@
     <meta charset="UTF-8">
     <title></title>
 </head>
+{% verbatim %}
 <body ng-app="treasurerApp" ng-cloak layout="column">
-<md-toolbar>
-    <h1>Henchman</h1>
+<md-toolbar ng-controller="ToolbarCtrl">
+    <div class="md-toolbar-tools">
+        <h2>
+            <span>Henchman</span>
+        </h2>
+        <span flex></span>
+
+        <div ng-hide="user">
+            <md-button aria-label="Login" ng-click="showLoginDialog($event)">
+                login
+            </md-button>
+            <md-button aria-label="Register" ng-click="showLoginDialog($event, true)">
+                register
+            </md-button>
+        </div>
+        <div ng-show="user">
+            <span>{{ user.username }}</span>
+            <md-button aria-label="Logout" ng-click="logout($event)">
+                logout
+            </md-button>
+        </div>
+    </div>
 </md-toolbar>
 <div class="container" layout="row" flex>
     <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
@@ -24,12 +45,17 @@
     </md-content>
 </div>
 </body>
+{% endverbatim %}
 {% load staticfiles %}
 <script src="{% static 'treasurer/bower_components/angular/angular.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-animate/angular-animate.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-aria/angular-aria.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-material/angular-material.min.js' %}"></script>
 <script src="{% static 'treasurer/app/treasurer.js' %}"></script>
+<script src="{% static 'treasurer/app/states/toolbar/toolbar.js' %}"></script>
+<script src="{% static 'treasurer/app/states/login_dialog/login_dialog.js' %}"></script>
+
+<script src="{% static 'treasurer/app/services/authorization_service.js' %}"></script>
 
 <link rel="stylesheet" href="{% static 'treasurer/bower_components/angular-material/angular-material.min.css' %}">
 <link rel="stylesheet" href="{% static 'treasurer/css/base.css' %}">

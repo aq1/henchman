@@ -1,0 +1,19 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form name="userForm">
+        <md-content class="md-padding">
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label for="email">Email</label>
+                    <input id="email" ng-model="email" type="text">
+                </md-input-container>
+            </div>
+            <md-input-container flex>
+                <label for="pass">Password</label>
+                <input id="pass" ng-model="password" type="password"></md-input-container>
+        </md-content>
+        <div class="md-dialog-actions" layout="row"><span flex></span>
+            <md-button ng-click="hide()">Cancel</md-button>
+            <button ng-click="login()" class="md-button md-primary" type="submit" ng-disabled="!(email || password)">Login</button>
+        </div>
+    </form>
+</md-dialog>
