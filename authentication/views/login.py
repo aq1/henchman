@@ -4,11 +4,14 @@ from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+from rest_framework.permissions import AllowAny
 
 from authentication.serializers import UserSerializer
 
 
 @api_view(['post'])
+@authentication_classes([])
+@permission_classes([AllowAny])
 def login(request):
     username = request.data.get('username', None)
     password = request.data.get('password', None)
@@ -33,4 +36,3 @@ def login(request):
             'status': 'Unauthorized',
             'message': 'Username/password combination invalid.'
         }, status=status.HTTP_401_UNAUTHORIZED)
-

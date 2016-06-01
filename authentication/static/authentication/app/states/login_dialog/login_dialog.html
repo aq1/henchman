@@ -1,0 +1,41 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form name="userForm">
+        <md-content class="md-padding">
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label for="email">Email</label>
+                    <input id="email" ng-model="email" type="email">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container flex>
+                    <label for="pass">Password</label>
+                    <input id="pass" ng-model="password" type="password">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container flex ng-if="forRegistration">
+                    <label for="pass">Confirm Password</label>
+                    <input id="pass" ng-model="password2" type="password" equals="{{ password }}">
+                </md-input-container>
+            </div>
+        </md-content>
+        <div class="md-dialog-actions" layout="row"><span flex></span>
+            <md-button ng-click="hide()">Cancel</md-button>
+            <md-button class="md-primary"
+                       ng-hide="forRegistration"
+                       ng-click="login()"
+                       type="submit"
+                       ng-disabled="userForm.$invalid">
+                Login
+            </md-button>
+            <md-button class="md-primary"
+                       ng-show="forRegistration"
+                       ng-click="register()"
+                       type="submit"
+                       ng-disabled="userForm.$invalid">
+                Register
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

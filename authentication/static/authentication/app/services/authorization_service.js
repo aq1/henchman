@@ -21,25 +21,35 @@ app.factory('AuthorizationService', ['$http', '$rootScope', '$mdDialog', functio
         login: function (username, password) {
             return $http.post('/auth/login/', {username: username, password: password});
         },
+        logout: function () {
+            $http.get('/auth/api/v1/' + 'users/logout/').then(function () {
+                service.setToken('');
+                service.setUser(null);
+            });
+        },
         getUser: function () {
             var token = service.token || window.localStorage.token;
             if (token) {
                 service.setToken(token);
                 $http.get('/auth/api/v1/' + 'users/get_current/').then(function (r) {
                     service.setUser(r.data);
-                    $http.get('/auth/api/v1/' + 'users/logout/');
                 });
             }
         },
         showDialog: function ($event, forRegistration) {
             return $mdDialog.show({
+                locals: {
+                    'forRegistration': forRegistration
+                },
                 clickOutsideToClose: true,
                 targetEvent: $event,
-                templateUrl: '/static/treasurer/app/states/login_dialog/login_dialog.html',
+                templateUrl: '/static/authentication/app/states/login_dialog/login_dialog.html',
                 controller: 'LoginDialogCtrl'
             }).then(function (data) {
-                service.setToken(data.token);
-                service.setUser(data.user);
+                if (data) {
+                    service.setToken(data.token);
+                    service.setUser(data.user);
+                }
             });
         }
     }

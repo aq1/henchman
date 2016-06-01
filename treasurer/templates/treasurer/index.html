@@ -23,7 +23,7 @@
         </div>
         <div ng-show="user">
             <span>{{ user.email }}</span>
-            <md-button aria-label="Logout" ng-click="logout($event)">
+            <md-button aria-label="Logout" ng-click="logout()">
                 logout
             </md-button>
         </div>
@@ -54,11 +54,12 @@
 <script src="{% static 'treasurer/bower_components/angular-resource/angular-resource.min.js' %}"></script>
 
 <script src="{% static 'authentication/app/authentication.js' %}"></script>
+<script src="{% static 'authentication/app/states/login_dialog/login_dialog.js' %}"></script>
 <script src="{% static 'authentication/app/services/authorization_service.js' %}"></script>
+<script src="{% static 'authentication/app/directives/equals.js' %}"></script>
 
 <script src="{% static 'treasurer/app/treasurer.js' %}"></script>
 <script src="{% static 'treasurer/app/states/toolbar/toolbar.js' %}"></script>
-<script src="{% static 'treasurer/app/states/login_dialog/login_dialog.js' %}"></script>
 
 <link rel="stylesheet" href="{% static 'treasurer/bower_components/angular-material/angular-material.min.css' %}">
 <link rel="stylesheet" href="{% static 'treasurer/css/base.css' %}">
