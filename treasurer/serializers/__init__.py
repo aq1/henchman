@@ -1,5 +1,4 @@
 from treasurer.serializers.account import AccountSerializer
-from treasurer.serializers.user import UserSerializer
 from treasurer.serializers.transaction import TransactionSerializer
 from treasurer.serializers.category import CategorySerializer
 from treasurer.serializers.check import CheckSerializer

@@ -6,8 +6,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('treasurer.urls')),
+    url(r'^auth/', include('authentication.urls')),
+    url(r'^treasurer/', include('treasurer.urls')),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_ROOT, document_root=settings.STATIC_ROOT)

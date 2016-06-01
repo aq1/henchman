@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+    'authentication.apps.AuthenticationConfig',
     'treasurer.apps.TreasurerConfig',
 ]
 
@@ -113,11 +114,14 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAdminUser',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
     'PAGE_SIZE': 10,
     'UNICODE_JSON': True,
 }
+
+AUTH_USER_MODEL = 'authentication.User'
 
 try:
     from local_settings import *

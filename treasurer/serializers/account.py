@@ -4,7 +4,7 @@ from treasurer.models import Account, Transaction
 
 class AccountSerializer(serializers.ModelSerializer):
 
-    user = serializers.ReadOnlyField(source='user.username')
+    user = serializers.ReadOnlyField(source='user.first_name')
     transactions = serializers.PrimaryKeyRelatedField(many=True, queryset=Transaction.objects.all())
 
     class Meta:
