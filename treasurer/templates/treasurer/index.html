@@ -40,8 +40,8 @@
             </md-list-item>
         </md-list>
     </md-sidenav>
-    <md-content id="content" flex>
-        Content
+    <md-content id="content" layout="row" flex>
+        <div ng-view flex></div>
     </md-content>
 </div>
 </body>
@@ -52,6 +52,7 @@
 <script src="{% static 'treasurer/bower_components/angular-aria/angular-aria.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-material/angular-material.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-resource/angular-resource.min.js' %}"></script>
+<script src="{% static 'treasurer/bower_components/angular-route/angular-route.min.js' %}"></script>
 
 <script src="{% static 'authentication/app/authentication.js' %}"></script>
 <script src="{% static 'authentication/app/states/login_dialog/login_dialog.js' %}"></script>
@@ -60,6 +61,7 @@
 
 <script src="{% static 'treasurer/app/treasurer.js' %}"></script>
 <script src="{% static 'treasurer/app/states/toolbar/toolbar.js' %}"></script>
+<script src="{% static 'treasurer/app/states/accounts/accounts.js' %}"></script>
 
 <link rel="stylesheet" href="{% static 'treasurer/bower_components/angular-material/angular-material.min.css' %}">
 <link rel="stylesheet" href="{% static 'treasurer/css/base.css' %}">

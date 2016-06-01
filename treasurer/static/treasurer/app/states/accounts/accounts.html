@@ -1,0 +1,24 @@
+<div>
+    <div ng-hide="accounts.length">
+        <md-icon>sentiment_dissatisfied</md-icon> Нет счетов
+    </div>
+    <div ng-show="accounts.length" layout="row">
+        <div flex>
+            <md-card ng-repeat="account in accounts" md-theme="default" md-theme-watch="">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{ account.name }}</span>
+                        <span class="md-subhead ">{{ account.total }}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Action 1</md-button>
+                    <md-button>Action 2</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </div>
+    <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+        <md-icon>add</md-icon>
+    </md-button>
+</div>
