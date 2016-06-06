@@ -1,11 +1,8 @@
 from django.contrib import admin
-from django.contrib.auth import models
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from .models import *
-
-admin.site.unregister(models.Group)
 
 
 class HenchmanUserCreationForm(UserCreationForm):
