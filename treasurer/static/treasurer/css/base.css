@@ -37,3 +37,21 @@ md-list-item > button {
     -webkit-transform: scale(0.70);
     -moz-transform: scale(0.70);
 }
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.icon-button {
+    min-height: 0;
+    min-width: 0;
+    margin: 0;
+}
+
+.no-text-transform {
+    text-transform: none;
+}

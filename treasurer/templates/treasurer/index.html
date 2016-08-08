@@ -5,8 +5,8 @@
     <title></title>
 </head>
 {% verbatim %}
-<body ng-app="treasurerApp" ng-cloak layout="column">
-<md-toolbar ng-controller="ToolbarCtrl">
+<body ng-app="treasurerApp" ng-controller="BodyCtrl" ng-cloak layout="column">
+<md-toolbar>
     <div class="md-toolbar-tools">
         <h2>
             <span>Henchman</span>
@@ -22,18 +22,20 @@
             </md-button>
         </div>
         <div ng-show="user">
-            <span>{{ user.email }}</span>
-            <md-button aria-label="Logout" ng-click="logout()">
-                logout
+            <md-button aria-label="User {{ user.email }}" class="no-text-transform">
+                {{ user.email }}
+            </md-button>
+            <md-button aria-label="Logout" ng-click="logout()" class="icon-button">
+                <md-icon>exit_to_app</md-icon>
             </md-button>
         </div>
     </div>
 </md-toolbar>
 <div class="container" layout="row" flex>
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+    <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp" ng-show="user">
         <md-list>
             <md-list-item>
-                <md-button>
+                <md-button aria-label="Finance Management">
                     <md-icon>account_balance_wallet</md-icon>
                     Управление финансами
                 </md-button>
@@ -60,8 +62,11 @@
 <script src="{% static 'authentication/app/directives/equals.js' %}"></script>
 
 <script src="{% static 'treasurer/app/treasurer.js' %}"></script>
-<script src="{% static 'treasurer/app/states/toolbar/toolbar.js' %}"></script>
+
+<script src="{% static 'treasurer/app/states/body/body.js' %}"></script>
+
 <script src="{% static 'treasurer/app/states/accounts/accounts.js' %}"></script>
+<script src="{% static 'treasurer/app/states/accounts/accounts_resource.js' %}"></script>
 
 <link rel="stylesheet" href="{% static 'treasurer/bower_components/angular-material/angular-material.min.css' %}">
 <link rel="stylesheet" href="{% static 'treasurer/css/base.css' %}">
