@@ -1,11 +1,18 @@
 var app = angular.module('authentication');
 
-app.factory('AccountDialogService', ['$mdDialog', function ($mdDialog) {
+app.factory('AccountDialogService', ['$rootScope', '$mdDialog', 'Account',
+    function ($rootScope, $mdDialog, Account) {
 
     var service = this;
 
     return {
         hide: $mdDialog.hide,
+        save: function(account) {
+            Account.save(account, function(r) {
+                $rootScope.$broadcast('accountSaved', r.id);
+                $mdDialog.hide;
+            });
+        },
         showDialog: function ($event, accountId) {
             return $mdDialog.show({
                 locals: {

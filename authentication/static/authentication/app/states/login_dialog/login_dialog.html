@@ -2,6 +2,9 @@
     <form name="userForm">
         <md-content class="md-padding">
             <div layout layout-sm="column">
+                <span ng-show="error">{{ error }}</span>
+            </div>
+            <div layout layout-sm="column">
                 <md-input-container flex>
                     <label for="email">Email</label>
                     <input id="email" ng-model="email" type="email">

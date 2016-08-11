@@ -1,6 +1,6 @@
 var app = angular.module('authentication');
 
-app.controller('AccountDialogCtrl', ['$scope', '$http', 'AccountDialogService', 'Account', 'accountId',
+app.controller('AccountDialogCtrl', ['$scope', '$http', 'AccountDialogService', 'accountId',
     function ($scope, $http, AccountDialogService, Account, accountId) {
         $scope.hide = AccountDialogService.hide;
         $scope.accountId = accountId;
@@ -10,5 +10,7 @@ app.controller('AccountDialogCtrl', ['$scope', '$http', 'AccountDialogService', 
                 $scope.account = account;
             });
         }
-        $scope.save = Account.save;
+
+        $scope.save = AccountDialogService.save;
+
     }]);
