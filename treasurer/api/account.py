@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 from rest_framework import permissions
 
+from treasurer.models import Account
 from treasurer.serializers import AccountSerializer
 
 
@@ -11,6 +12,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     """
     serializer_class = AccountSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = Account.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

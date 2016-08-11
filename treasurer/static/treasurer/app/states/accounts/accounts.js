@@ -4,19 +4,36 @@ app.controller('AccountsCtrl', [
     '$scope',
     '$http',
     'AuthorizationService',
+    'AccountDialogService',
     'Account',
     function ($scope,
               $http,
               AuthorizationService,
+              AccountDialogService,
               Account) {
-    Account.query(function(accounts) {
-        console.log(accounts);
-    });
+
+    window.s = $scope;
+
+    $scope.user = null;
+    $scope.accounts = [];
 
     $scope.showLoginDialog = AuthorizationService.showDialog;
+    $scope.showAccountDialog = AccountDialogService.showDialog;
     $scope.logout = AuthorizationService.logout;
-    window.s = $scope;
+
     $scope.$on('userIsSet', function(event, user) {
         $scope.user = user;
+
+        if (user) {
+            Account.query(function(r) {
+                $scope.accounts = r.results;
+            });
+        } else {
+            $scope.accounts = [];
+        }
     });
+
+    if (!$scope.user) {
+        AuthorizationService.getUser();
+    }
 }]);

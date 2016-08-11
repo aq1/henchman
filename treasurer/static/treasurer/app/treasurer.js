@@ -14,9 +14,9 @@ app.config(['$httpProvider', function($httpProvider){
 }]);
 
 
-app.config(['$routeProvider',
-    function ($routeProvider) {
-        $routeProvider.
+app.config(['$routeProvider', '$resourceProvider',
+    function ($routeProvider, $resourceProvider) {
+          $routeProvider.
             when('/accounts/', {
                 templateUrl: '/static/treasurer/app/states/accounts/accounts.html',
                 controller: 'AccountsCtrl'
@@ -24,5 +24,7 @@ app.config(['$routeProvider',
             otherwise({
                 redirectTo: '/accounts/'
             });
+
+          $resourceProvider.defaults.stripTrailingSlashes = false;
     }
 ]);

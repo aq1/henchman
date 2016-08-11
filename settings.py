@@ -123,6 +123,7 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'authentication.User'
+APPEND_SLASH = False
 
 try:
     from local_settings import *

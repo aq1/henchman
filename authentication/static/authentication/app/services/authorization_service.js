@@ -4,38 +4,39 @@ app.factory('AuthorizationService', ['$http', '$rootScope', '$mdDialog', functio
 
     var service = this;
 
-    service.setToken = function (token) {
+    var setToken = function (token) {
         $http.defaults.headers.common.Authorization = 'Token ' + token;
         window.localStorage.token = token;
         service.token = token;
     };
 
-    service.setUser = function (user) {
+    var setUser = function (user) {
         service.user = user;
         $rootScope.$broadcast('userIsSet', user);
     };
 
     return {
-        setToken: service.setToken,
-        setUser: service.setUser,
+        setToken: setToken,
+        setUser: setUser,
         login: function (username, password) {
             return $http.post('/auth/login/', {username: username, password: password});
         },
         logout: function () {
             $http.get('/auth/api/v1/' + 'users/logout/').then(function () {
-                service.setToken('');
-                service.setUser(null);
+                setToken('');
+                setUser(null);
             });
         },
         getUser: function () {
             var token = service.token || window.localStorage.token;
             if (token) {
-                service.setToken(token);
+                setToken(token);
                 $http.get('/auth/api/v1/' + 'users/get_current/').then(function (r) {
-                    service.setUser(r.data);
+                    setUser(r.data);
                 });
             }
         },
+        hide: $mdDialog.hide,
         showDialog: function ($event, forRegistration) {
             return $mdDialog.show({
                 locals: {
@@ -47,8 +48,8 @@ app.factory('AuthorizationService', ['$http', '$rootScope', '$mdDialog', functio
                 controller: 'LoginDialogCtrl'
             }).then(function (data) {
                 if (data) {
-                    service.setToken(data.token);
-                    service.setUser(data.user);
+                    setToken(data.token);
+                    setUser(data.user);
                 }
             });
         }

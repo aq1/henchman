@@ -7,16 +7,16 @@
                     <input id="email" ng-model="email" type="email">
                 </md-input-container>
             </div>
-            <div>
+            <div layout layout-sm="column">
                 <md-input-container flex>
                     <label for="pass">Password</label>
                     <input id="pass" ng-model="password" type="password">
                 </md-input-container>
             </div>
-            <div>
+            <div layout layout-sm="column">
                 <md-input-container flex ng-if="forRegistration">
                     <label for="pass">Confirm Password</label>
-                    <input id="pass" ng-model="password2" type="password" equals="{{ password }}">
+                    <input id="pass2" ng-model="password2" type="password" equals="{{ password }}">
                 </md-input-container>
             </div>
         </md-content>
