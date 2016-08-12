@@ -33,6 +33,12 @@ app.controller('AccountsCtrl', [
         }
     });
 
+    $scope.$on('accountSaved', function(event, accountId) {
+        Account.get({id: accountId}, function (account) {
+            $scope.accounts.push(account);
+        });
+    });
+
     if (!$scope.user) {
         AuthorizationService.getUser();
     }

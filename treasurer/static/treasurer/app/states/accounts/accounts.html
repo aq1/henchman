@@ -1,11 +1,11 @@
 <div>
-    <div>
-        <div ng-hide="!user || accounts.length">
+    <div layout="column">
+        <div ng-hide="!user || accounts.length" layout="row">
             <md-icon>sentiment_dissatisfied</md-icon>
             Нет счетов
         </div>
         <div ng-show="accounts.length" layout="row">
-            <div flex>
+            <div layout="column">
                 <md-card ng-repeat="account in accounts" md-theme="default" md-theme-watch="">
                     <md-card-title>
                         <md-card-title-text>
@@ -13,10 +13,6 @@
                             <span class="md-subhead ">{{ account.total }}</span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                    </md-card-actions>
                 </md-card>
             </div>
             <div flex></div>
@@ -24,7 +20,8 @@
         </div>
     </div>
     <div class="relative">
-        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAccountDialog($event)" ng-hide="!user">
+        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAccountDialog($event)"
+                   ng-hide="!user">
             <md-icon>add</md-icon>
         </md-button>
     </div>

@@ -25,6 +25,6 @@ app.config(['$routeProvider', '$resourceProvider',
                 redirectTo: '/accounts/'
             });
 
-          $resourceProvider.defaults.stripTrailingSlashes = false;
+          $resourceProvider.defaults.stripTrailingSlashes = true;
     }
 ]);

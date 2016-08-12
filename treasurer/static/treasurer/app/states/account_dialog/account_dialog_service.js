@@ -10,7 +10,7 @@ app.factory('AccountDialogService', ['$rootScope', '$mdDialog', 'Account',
         save: function(account) {
             Account.save(account, function(r) {
                 $rootScope.$broadcast('accountSaved', r.id);
-                $mdDialog.hide;
+                $mdDialog.hide();
             });
         },
         showDialog: function ($event, accountId) {
