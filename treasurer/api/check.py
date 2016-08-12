@@ -12,4 +12,4 @@ class CheckViewSet(viewsets.ModelViewSet):
     """
     queryset = Check.objects.all()
     serializer_class = CheckSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]

@@ -1,12 +1,12 @@
 <div>
-    <div layout="column">
-        <div ng-hide="!user || accounts.length" layout="row">
+    <div layout="row">
+        <div ng-hide="!user || accounts.length">
             <md-icon>sentiment_dissatisfied</md-icon>
             Нет счетов
         </div>
         <div ng-show="accounts.length" layout="row">
-            <div layout="column">
-                <md-card ng-repeat="account in accounts" md-theme="default" md-theme-watch="">
+            <div>
+                <md-card ng-repeat="account in accounts" md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">{{ account.name }}</span>
@@ -15,8 +15,8 @@
                     </md-card-title>
                 </md-card>
             </div>
-            <div flex></div>
-            <div flex></div>
+            <div flex layout="column">
+            </div>
         </div>
     </div>
     <div class="relative">
