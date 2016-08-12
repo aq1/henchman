@@ -18,6 +18,4 @@ class AccountViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        if not self.request.user.id:
-            return Account.objects.none()
         return self.request.user.accounts.all()
