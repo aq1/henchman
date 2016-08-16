@@ -1,8 +1,10 @@
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework import decorators
+from rest_framework.response import Response
 
-from treasurer.models import Account
-from treasurer.serializers import AccountSerializer
+from treasurer.models import Account, Transaction
+from treasurer.serializers import AccountSerializer, TransactionSerializer
 
 
 class AccountViewSet(viewsets.ModelViewSet):
@@ -19,3 +21,14 @@ class AccountViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return self.request.user.accounts.all()
+
+    @decorators.detail_route(methods=['get'])
+    def transactions(self, request, pk=None):
+        transactions = Transaction.objects.filter(account_id=pk)
+        page = self.paginate_queryset(transactions)
+        if page is not None:
+            serializer = TransactionSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = TransactionSerializer(transactions, many=True)
+        return Response(serializer.data)
