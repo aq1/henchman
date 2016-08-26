@@ -55,3 +55,33 @@ md-list-item > button {
 .no-text-transform {
     text-transform: none;
 }
+
+md-card.account {
+    margin-top: -30px;
+    display: inline-block;
+    width: 200px;
+    overflow-x: hidden;
+    height: 110px;
+}
+
+md-card.account-new {
+    box-shadow: none;
+    width: 50px;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: -110px;
+    padding-top: 40px;
+}
+
+md-card.account-new:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+md-card.account-new:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+div.statistic {
+    flex-grow: 4;
+}

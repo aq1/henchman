@@ -1,4 +1,4 @@
-var app = angular.module('treasurerApp', ['ngMaterial', 'ngRoute', 'ngResource', 'authentication']);
+var app = angular.module('treasurerApp', ['ngMaterial', 'ngRoute', 'ngResource', 'authentication', 'utils']);
 
 app.constant('urls', {
     apiRoot: '/treasurer/api/v1/',

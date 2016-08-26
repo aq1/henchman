@@ -1,19 +1,19 @@
-from rest_framework import viewsets
-from rest_framework import permissions
-from rest_framework import decorators
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 
 from treasurer.models import Account, Transaction
 from treasurer.serializers import AccountSerializer, TransactionSerializer
 
 
-class AccountViewSet(viewsets.ModelViewSet):
+class AccountViewSet(ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
     serializer_class = AccountSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     queryset = Account.objects.all()
 
     def perform_create(self, serializer):
@@ -22,7 +22,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return self.request.user.accounts.all()
 
-    @decorators.detail_route(methods=['get'])
+    detail_route()
     def transactions(self, request, pk=None):
         transactions = Transaction.objects.filter(account_id=pk)
         page = self.paginate_queryset(transactions)

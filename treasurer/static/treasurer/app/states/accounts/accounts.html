@@ -1,12 +1,12 @@
 <div>
-    <div layout="row">
+    <div flex layout="row">
         <div ng-hide="!user || accounts.length">
             <md-icon>sentiment_dissatisfied</md-icon>
             Нет счетов
         </div>
-        <div ng-show="accounts.length" layout="row">
+        <div ng-show="accounts.length">
             <div>
-                <md-card ng-repeat="account in accounts" md-theme="default">
+                <md-card ng-repeat="account in accounts" md-theme="default" class="account">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">{{ account.name }}</span>
@@ -14,13 +14,27 @@
                         </md-card-title-text>
                     </md-card-title>
                 </md-card>
-            </div>
-            <div flex layout="column">
+                <md-card class="account account-new" ng-click="showAccountDialog($event)">
+                    <md-icon>add</md-icon>
+                </md-card>
             </div>
         </div>
     </div>
+    <div flex layout="row">
+        <div flex layout="column" class="transactions-list" ng-show="transactions.length">
+            <md-card ng-repeat="transaction in transactions" md-theme="default">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{ transaction.total }} {{ transaction.category_name }}</span>
+                        <span class="md-subhead ">{{ transaction.account_name }}</span>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+        <div flex layout="column" class="statistic"></div>
+    </div>
     <div class="relative">
-        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAccountDialog($event)"
+        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showTransactionDialog($event)"
                    ng-hide="!user">
             <md-icon>add</md-icon>
         </md-button>
