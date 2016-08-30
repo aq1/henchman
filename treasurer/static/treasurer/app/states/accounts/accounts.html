@@ -1,10 +1,6 @@
 <div>
     <div flex layout="row">
-        <div ng-hide="!user || accounts.length">
-            <md-icon>sentiment_dissatisfied</md-icon>
-            Нет счетов
-        </div>
-        <div ng-show="accounts.length">
+        <div>
             <div>
                 <md-card ng-repeat="account in accounts" md-theme="default" class="account">
                     <md-card-title>
@@ -18,6 +14,10 @@
                     <md-icon>add</md-icon>
                 </md-card>
             </div>
+        </div>
+        <div ng-hide="!user || accounts.length">
+            <md-icon>sentiment_dissatisfied</md-icon>
+            Нет счетов
         </div>
     </div>
     <div flex layout="row">
