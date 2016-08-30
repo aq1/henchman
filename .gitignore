@@ -66,3 +66,4 @@ dump.rdb
 media/
 /static/
 bower_components
+local_settings.py
