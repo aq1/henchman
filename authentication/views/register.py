@@ -11,9 +11,11 @@ from authentication.serializers import UserSerializer
 @api_view(['post'])
 @authentication_classes([])
 @permission_classes([AllowAny])
-def login(request):
+def register(request):
     username = request.data.get('username')
     password = request.data.get('password')
+
+    User.objects.create_user(username, password)
 
     ok, data = User.login(request, username, password)
 
@@ -24,6 +26,6 @@ def login(request):
         return Response({'user': serialized.data, 'token': token})
     else:
         return Response({
-            'status': 'Unauthorized',
+            'status': 'Bad Request',
             'message': data,
-        }, status=status.HTTP_401_UNAUTHORIZED)
+        }, status=status.HTTP_400_BAD_REQUEST)

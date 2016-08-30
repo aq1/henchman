@@ -18,4 +18,14 @@ app.controller('LoginDialogCtrl', ['$scope', '$http', 'AuthorizationService', 'f
                 $scope.error = r.data.message;
             });
         };
+
+        $scope.register = function () {
+            delete $scope.error;
+            AuthorizationService.register($scope.email, $scope.password).then(function (r) {
+                AuthorizationService.setUser(r.data);
+                $scope.hide(r.data);
+            }, function(r) {
+                $scope.error = r.data.message;
+            });
+        };
     }]);

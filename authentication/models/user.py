@@ -1,3 +1,4 @@
+from django.contrib import auth
 from django.contrib.auth.models import (UserManager, AbstractBaseUser, PermissionsMixin)
 from django.db import models
 
@@ -51,6 +52,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         app_label = 'authentication'
+
+    @classmethod
+    def login(cls, request, username, password):
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                auth.login(request, user)
+                return True, user
+            else:
+                return False, 'This user has been disabled.'
+        else:
+            return False, 'Username/password combination invalid.'
 
     def get_full_name(self):
         return '{} {}'.format(self.last_name,

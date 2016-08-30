@@ -21,6 +21,9 @@ app.factory('AuthorizationService', ['$http', '$rootScope', '$mdDialog', functio
         login: function (username, password) {
             return $http.post('/auth/login/', {username: username, password: password});
         },
+        register: function (username, password) {
+            return $http.post('/auth/register/', {username: username, password: password});
+        },
         logout: function () {
             $http.get('/auth/api/v1/' + 'users/logout/').then(function () {
                 setToken('');
