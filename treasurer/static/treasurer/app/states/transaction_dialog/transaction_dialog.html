@@ -1,0 +1,55 @@
+<md-dialog aria-label="transaction-dialog">
+    <form name="transactionForm">
+        <md-dialog-content class="md-padding">
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>Account</label>
+                    <md-select ng-model="transaction.account">
+                        <md-option ng-repeat="account in accounts" value="{{ account.id }}">
+                            {{ account.name }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+           <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>Category</label>
+                    <md-select ng-model="transaction.category">
+                        <md-option ng-repeat="category in categories" value="{{ category.id }}">
+                            {{ category.name }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>Date</label>
+                    <md-datepicker ng-model="transaction.date" md-placeholder="Enter date"></md-datepicker>
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label for="total">Total</label>
+                    <input id="total" ng-model="transaction.total" type="number" required>
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" ng-model="transaction.comment" rows="3" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <div class="md-dialog-actions" layout="row"><span flex></span>
+                <md-button ng-click="hide()">Close</md-button>
+                <md-button class="md-primary"
+                           ng-click="save(transaction)"
+                           type="submit"
+                           ng-disabled="transactionForm.$invalid">
+                    Save
+                </md-button>
+            </div>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

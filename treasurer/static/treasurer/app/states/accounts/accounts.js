@@ -6,6 +6,7 @@ app.controller('AccountsCtrl', [
     'AuthorizationService',
     'AccountDialogService',
     'Account',
+    'TransactionDialogService',
     'Transaction',
     'utils',
     function ($scope,
@@ -13,6 +14,7 @@ app.controller('AccountsCtrl', [
               AuthorizationService,
               AccountDialogService,
               Account,
+              TransactionDialogService,
               Transaction,
               utils) {
 
@@ -24,6 +26,7 @@ app.controller('AccountsCtrl', [
 
     $scope.showLoginDialog = AuthorizationService.showDialog;
     $scope.showAccountDialog = AccountDialogService.showDialog;
+    $scope.showTransactionDialog = TransactionDialogService.showDialog;
     $scope.logout = AuthorizationService.logout;
 
     $scope.$on('userIsSet', function(event, user) {

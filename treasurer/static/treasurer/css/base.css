@@ -56,7 +56,7 @@ md-list-item > button {
     text-transform: none;
 }
 
-md-card.account {
+.account {
     margin-top: -30px;
     display: inline-block;
     width: 200px;
@@ -64,16 +64,16 @@ md-card.account {
     height: 110px;
 }
 
-md-card.account-new {
-    box-shadow: none;
-    width: 50px;
+.account-new {
+    width: auto;
+    padding: 0 20px;
     text-align: center;
     vertical-align: middle;
-//    margin-top: -110px;
+    margin-top: -110px;
     padding-top: 40px;
 }
 
-md-card.account-new:hover {
+.account-new:hover {
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }

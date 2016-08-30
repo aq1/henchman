@@ -3,10 +3,12 @@ var app = angular.module('authentication');
 app.controller('AccountDialogCtrl', ['$scope', '$http', 'AccountDialogService', 'accountId',
     function ($scope, $http, AccountDialogService, Account, accountId) {
         $scope.hide = AccountDialogService.hide;
-        $scope.accountId = accountId;
+        $scope.account = {
+            id: accountId
+        };
 
-        if ($scope.accountId) {
-            Account.get({id: $scope.accountId}).then(function(account) {
+        if ($scope.account.id) {
+            Account.get({id: $scope.account.id}).then(function(account) {
                 $scope.account = account;
             });
         }
