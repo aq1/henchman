@@ -2,7 +2,7 @@ var app = angular.module('authentication');
 
 app.controller('TransactionDialogCtrl', ['$scope', '$http', 'Account', 'Category', 'TransactionDialogService', 'transactionId',
     function ($scope, $http, Account, Category, TransactionDialogService, Transaction, transactionId) {
-
+        window.s = $scope;
         $scope.transaction = {
             id: transactionId
         };
@@ -22,6 +22,9 @@ app.controller('TransactionDialogCtrl', ['$scope', '$http', 'Account', 'Category
             });
         }
 
-        $scope.save = TransactionDialogService.save;
+        $scope.categorySelected = function(category) {
+            $scope.transaction.category = category.id
+        };
 
+        $scope.save = TransactionDialogService.save;
     }]);

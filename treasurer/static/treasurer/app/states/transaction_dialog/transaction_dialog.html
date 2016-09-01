@@ -11,14 +11,21 @@
                     </md-select>
                 </md-input-container>
             </div>
-           <div layout layout-sm="column">
+            <div layout layout-sm="column">
                 <md-input-container flex>
-                    <label>Category</label>
-                    <md-select ng-model="transaction.category">
-                        <md-option ng-repeat="category in categories" value="{{ category.id }}">
-                            {{ category.name }}
-                        </md-option>
-                    </md-select>
+                    <!--<label>Category</label>-->
+                    <md-autocomplete
+                            md-selected-item-change="categorySelected(category)"
+                            md-search-text="categorySearch"
+                            md-items="category in categories | filter : categorySearch"
+                            md-item-text="category.name">
+                        <md-item-template>
+                            <span md-highlight-text="categorySearch">{{ category.name }}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No matches found.
+                        </md-not-found>
+                    </md-autocomplete>
                 </md-input-container>
             </div>
             <div layout layout-sm="column">
