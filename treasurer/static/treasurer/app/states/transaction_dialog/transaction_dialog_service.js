@@ -9,7 +9,7 @@ app.factory('TransactionDialogService', ['$rootScope', '$mdDialog', 'Transaction
         hide: $mdDialog.hide,
         save: function(transaction) {
             Transaction.save(transaction, function(r) {
-                $rootScope.$broadcast('transactionSaved', r.id);
+                $rootScope.$broadcast('transactionSaved', r);
                 $mdDialog.hide();
             });
         },

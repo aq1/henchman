@@ -18,7 +18,7 @@ app.controller('AccountsCtrl', [
               Transaction,
               utils) {
 
-    window.s = $scope;
+    window.as = $scope;
 
     $scope.user = null;
     $scope.accounts = [];
@@ -44,11 +44,23 @@ app.controller('AccountsCtrl', [
         }
     });
 
-    $scope.$on('accountSaved', function(event, accountId) {
-        Account.get({id: accountId}, function (account) {
-            $scope.accounts.push(account);
-        });
-    });
+    var updateArray = function(arrayName) {
+        return function(event, item) {
+
+            for (var i = $scope[arrayName].length - 1; i >= 0; i--) {
+                console.log(i);
+                console.log($scope[arrayName][i].id);
+                if ($scope[arrayName][i].id === item.id) {
+                    $scope[arrayName][i] = item;
+                    return;
+                }
+            }
+            $scope[arrayName].unshift(item);
+        };
+    };
+
+    $scope.$on('accountSaved', updateArray('accounts'));
+    $scope.$on('transactionSaved', updateArray('transactions'));
 
     if (!$scope.user) {
         AuthorizationService.getUser();

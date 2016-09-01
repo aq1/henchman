@@ -9,7 +9,7 @@ app.factory('AccountDialogService', ['$rootScope', '$mdDialog', 'Account',
         hide: $mdDialog.hide,
         save: function(account) {
             Account.save(account, function(r) {
-                $rootScope.$broadcast('accountSaved', r.id);
+                $rootScope.$broadcast('accountSaved', r);
                 $mdDialog.hide();
             });
         },

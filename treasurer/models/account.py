@@ -8,12 +8,13 @@ from treasurer.models import Transaction
 
 class Account(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='accounts')
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     total = models.FloatField(blank=True, default=0)
     limit = models.FloatField(blank=True, default=0)
 
     class Meta:
         app_label = 'treasurer'
+        ordering = ['-id']
 
     def __str__(self):
         return '{self.user} "{self.name}" {self.total}'.format(self=self)
