@@ -2,12 +2,15 @@
     <form name="accountForm">
         <md-dialog-content class="md-padding">
             <div layout layout-sm="column">
+                <span ng-show="error">{{ error }}</span>
+            </div>
+            <div layout layout-sm="column">
                 <md-input-container flex>
                     <label for="name">Name</label>
                     <input id="name" ng-model="account.name" type="text" required>
                 </md-input-container>
             </div>
-           <div layout layout-sm="column">
+            <div layout layout-sm="column">
                 <md-input-container flex>
                     <label for="total">Total</label>
                     <input id="total" ng-model="account.total" type="number" required>

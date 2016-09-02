@@ -85,3 +85,7 @@ md-card.account-new:active {
 div.statistic {
     flex-grow: 4;
 }
+
+md-dialog form div md-input-container {
+    margin-left: 10px;
+}

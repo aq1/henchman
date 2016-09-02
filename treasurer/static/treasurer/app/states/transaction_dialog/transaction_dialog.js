@@ -4,7 +4,8 @@ app.controller('TransactionDialogCtrl', ['$scope', '$http', 'Account', 'Category
     function ($scope, $http, Account, Category, TransactionDialogService, Transaction, transactionId) {
         window.s = $scope;
         $scope.transaction = {
-            id: transactionId
+            id: transactionId,
+            date: new Date()
         };
         $scope.hide = TransactionDialogService.hide;
 
