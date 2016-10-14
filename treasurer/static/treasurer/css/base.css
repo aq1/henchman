@@ -57,6 +57,7 @@ md-list-item > button {
 }
 
 .account {
+    cursor: pointer;
     margin-top: -30px;
     display: inline-block;
     width: 200px;

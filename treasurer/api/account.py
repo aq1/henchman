@@ -22,7 +22,7 @@ class AccountViewSet(ModelViewSet):
     def get_queryset(self):
         return self.request.user.accounts.all()
 
-    detail_route()
+    @detail_route()
     def transactions(self, request, pk=None):
         transactions = Transaction.objects.filter(account_id=pk)
         page = self.paginate_queryset(transactions)

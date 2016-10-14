@@ -67,3 +67,4 @@ media/
 /static/
 bower_components
 local_settings.py
+*/static/*/models.js

@@ -32,7 +32,10 @@ INSTALLED_APPS = [
 
     'authentication.apps.AuthenticationConfig',
     'treasurer.apps.TreasurerConfig',
+    'utils.apps.UtilsConfig',
 ]
+
+UTILS_APPS_TO_WATCH = ['authentication', 'treasurer']
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

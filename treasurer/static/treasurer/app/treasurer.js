@@ -1,4 +1,4 @@
-var app = angular.module('treasurerApp', ['ngMaterial', 'ngRoute', 'ngResource', 'authentication', 'utils']);
+var app = angular.module('treasurerApp', ['ngMaterial', 'ngRoute', 'ngResource', 'authentication', 'utils', 'autoModels']);
 
 app.constant('urls', {
     apiRoot: '/treasurer/api/v1/',
@@ -28,3 +28,8 @@ app.config(['$routeProvider', '$resourceProvider',
           $resourceProvider.defaults.stripTrailingSlashes = true;
     }
 ]);
+
+
+app.run(['autoModelsService', function(autoModelsService) {
+    autoModelsService.init('treasurer');
+}]);

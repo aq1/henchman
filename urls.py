@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('authentication.urls')),
     url(r'^treasurer/', include('treasurer.urls')),
-    url(r'^.*$', RedirectView.as_view(url='treasurer/', permanent=False), name='index')
+    url(r'^$', RedirectView.as_view(url='treasurer/', permanent=False), name='index')
 ]
 
 if settings.DEBUG:
