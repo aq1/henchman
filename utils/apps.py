@@ -20,6 +20,7 @@ class UtilsConfig(AppConfig):
             field = {
                 'name': f.name,
                 'type': type(f).__name__,
+                'required': not f.blank,
             }
             if isinstance(f, models.ForeignKey):
                 field['config'] = {

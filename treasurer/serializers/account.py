@@ -1,11 +1,14 @@
 from rest_framework import serializers
-from treasurer.models import Account, Transaction
+
+from authentication.serializers import UserSerializer
+
+from treasurer.models import Account
 
 
 class AccountSerializer(serializers.ModelSerializer):
 
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    users = UserSerializer(read_only=True, many=True)
 
     class Meta:
         model = Account
-        fields = 'id', 'user', 'name', 'total', 'limit'
+        fields = 'id', 'users', 'name', 'total', 'limit'

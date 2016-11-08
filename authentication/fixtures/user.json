@@ -1,0 +1,22 @@
+[
+  {
+    "model": "authentication.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$30000$lGGXYyJv2NGB$HVJxjwmXq4AQhYFjHW6t5tWEw0oGEL088wE1nVUc2V8=",
+      "last_login": null,
+      "is_superuser": true,
+      "email": "aq1@aq1.ru",
+      "first_name": null,
+      "last_name": null,
+      "sex": null,
+      "birthday": null,
+      "is_admin": true,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2016-11-08",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

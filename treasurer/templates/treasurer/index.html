@@ -6,46 +6,7 @@
 </head>
 {% verbatim %}
 <body ng-app="treasurerApp" ng-controller="BodyCtrl" ng-cloak layout="column">
-<md-toolbar>
-    <div class="md-toolbar-tools">
-        <h2>
-            <span>Henchman</span>
-        </h2>
-        <span flex></span>
-
-        <div ng-hide="user">
-            <md-button aria-label="Login" ng-click="showLoginDialog($event)">
-                login
-            </md-button>
-            <md-button aria-label="Register" ng-click="showLoginDialog($event, true)">
-                register
-            </md-button>
-        </div>
-        <div ng-show="user">
-            <md-button aria-label="User {{ user.email }}" class="no-text-transform">
-                {{ user.email }}
-            </md-button>
-            <md-button aria-label="Logout" ng-click="logout()" class="icon-button">
-                <md-icon>exit_to_app</md-icon>
-            </md-button>
-        </div>
-    </div>
-</md-toolbar>
-<div class="container" layout="row" flex>
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp" ng-show="user">
-        <md-list>
-            <md-list-item>
-                <md-button aria-label="Finance Management">
-                    <md-icon>account_balance_wallet</md-icon>
-                    Управление финансами
-                </md-button>
-            </md-list-item>
-        </md-list>
-    </md-sidenav>
-    <md-content id="content" layout="row" flex>
-        <div ng-view flex></div>
-    </md-content>
-</div>
+    <model-form model-name="'treasurer.Account'"></model-form>
 </body>
 {% endverbatim %}
 {% load staticfiles %}
@@ -57,14 +18,16 @@
 <script src="{% static 'treasurer/bower_components/angular-resource/angular-resource.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-route/angular-route.min.js' %}"></script>
 
+<script src="{% static 'treasurer/utils/utils.js' %}"></script>
+
 <script src="{% static 'treasurer/auto_models/auto_models.js' %}"></script>
+<script src="{% static 'treasurer/auto_models/model_form.js' %}"></script>
+<script src="{% static 'treasurer/auto_models/model_form_field.js' %}"></script>
 
 <script src="{% static 'authentication/app/authentication.js' %}"></script>
 <script src="{% static 'authentication/app/states/login_dialog/login_dialog.js' %}"></script>
 <script src="{% static 'authentication/app/services/authorization_service.js' %}"></script>
 <script src="{% static 'authentication/app/directives/equals.js' %}"></script>
-
-<script src="{% static 'treasurer/utils/utils.js' %}"></script>
 
 <script src="{% static 'treasurer/app/treasurer.js' %}"></script>
 

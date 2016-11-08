@@ -1,0 +1,290 @@
+[
+	{
+		"model": "treasurer.category",
+		"pk": 1,
+		"fields": {
+			"name": "Еда",
+			"parent": null,
+			"lft": 1,
+			"rght": 10,
+			"tree_id": 1,
+			"level": 0
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 2,
+		"fields": {
+			"name": "Здоровье",
+			"parent": null,
+			"lft": 1,
+			"rght": 6,
+			"tree_id": 2,
+			"level": 0
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 3,
+		"fields": {
+			"name": "Квартира",
+			"parent": null,
+			"lft": 1,
+			"rght": 8,
+			"tree_id": 3,
+			"level": 0
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 4,
+		"fields": {
+			"name": "Проезд",
+			"parent": null,
+			"lft": 1,
+			"rght": 6,
+			"tree_id": 4,
+			"level": 0
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 5,
+		"fields": {
+			"name": "Развлечения",
+			"parent": null,
+			"lft": 1,
+			"rght": 10,
+			"tree_id": 5,
+			"level": 0
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 6,
+		"fields": {
+			"name": "Продукты",
+			"parent": 1,
+			"lft": 2,
+			"rght": 3,
+			"tree_id": 1,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 7,
+		"fields": {
+			"name": "Рестораны/Кафе",
+			"parent": 1,
+			"lft": 4,
+			"rght": 9,
+			"tree_id": 1,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 8,
+		"fields": {
+			"name": "Пицца",
+			"parent": 7,
+			"lft": 5,
+			"rght": 6,
+			"tree_id": 1,
+			"level": 2
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 9,
+		"fields": {
+			"name": "Суши",
+			"parent": 7,
+			"lft": 7,
+			"rght": 8,
+			"tree_id": 1,
+			"level": 2
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 10,
+		"fields": {
+			"name": "Врачи",
+			"parent": 2,
+			"lft": 2,
+			"rght": 3,
+			"tree_id": 2,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 11,
+		"fields": {
+			"name": "Лекарства",
+			"parent": 2,
+			"lft": 4,
+			"rght": 5,
+			"tree_id": 2,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 12,
+		"fields": {
+			"name": "Квартплата",
+			"parent": 3,
+			"lft": 2,
+			"rght": 3,
+			"tree_id": 3,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 13,
+		"fields": {
+			"name": "Свет",
+			"parent": 3,
+			"lft": 4,
+			"rght": 5,
+			"tree_id": 3,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 14,
+		"fields": {
+			"name": "Газ",
+			"parent": 3,
+			"lft": 6,
+			"rght": 7,
+			"tree_id": 3,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 15,
+		"fields": {
+			"name": "Общественный транспорт",
+			"parent": 4,
+			"lft": 2,
+			"rght": 3,
+			"tree_id": 4,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 16,
+		"fields": {
+			"name": "Такси",
+			"parent": 4,
+			"lft": 4,
+			"rght": 5,
+			"tree_id": 4,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 17,
+		"fields": {
+			"name": "Игры",
+			"parent": 5,
+			"lft": 2,
+			"rght": 7,
+			"tree_id": 5,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 18,
+		"fields": {
+			"name": "Настольные игры",
+			"parent": 17,
+			"lft": 3,
+			"rght": 4,
+			"tree_id": 5,
+			"level": 2
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 19,
+		"fields": {
+			"name": "Компьютерные игры",
+			"parent": 17,
+			"lft": 5,
+			"rght": 6,
+			"tree_id": 5,
+			"level": 2
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 20,
+		"fields": {
+			"name": "Выставки/Музеи",
+			"parent": 5,
+			"lft": 8,
+			"rght": 9,
+			"tree_id": 5,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 21,
+		"fields": {
+			"name": "Животные",
+			"parent": null,
+			"lft": 1,
+			"rght": 8,
+			"tree_id": 6,
+			"level": 0
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 22,
+		"fields": {
+			"name": "Еда",
+			"parent": 21,
+			"lft": 2,
+			"rght": 3,
+			"tree_id": 6,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 23,
+		"fields": {
+			"name": "Здоровье",
+			"parent": 21,
+			"lft": 4,
+			"rght": 5,
+			"tree_id": 6,
+			"level": 1
+		}
+	},
+	{
+		"model": "treasurer.category",
+		"pk": 24,
+		"fields": {
+			"name": "Другое",
+			"parent": 21,
+			"lft": 6,
+			"rght": 7,
+			"tree_id": 6,
+			"level": 1
+		}
+	}
+]
