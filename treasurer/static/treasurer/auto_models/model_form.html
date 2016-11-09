@@ -5,9 +5,7 @@
         </div>
         <div layout layout-sm="column" ng-repeat="field in model.fields" ng-if="field.type != 'AutoField'">
             <md-input-container flex>
-                <label for="{{ field.name }}">{{ field.name }}</label>
                 <model-form-field field="field"></model-form-field>
-                {{field.type}}
             </md-input-container>
         </div>
     </md-dialog-content>

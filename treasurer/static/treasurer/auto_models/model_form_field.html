@@ -1,1 +1,11 @@
-<input id="{{ field.name }}" ng-model="name" type="text" ng-required="field.required">
+<label>{{ field.name }}</label>
+<input id="{{ field.name }}"
+       ng-model="name"
+       type="{{ inputType }}"
+       ng-required="field.required"
+       ng-if="inputType">
+
+<textarea ng-model="aa" rows="3" md-select-on-focus ng-if="field.type === 'TextField'">
+</textarea>
+<md-datepicker ng-model="transaction.date" md-placeholder="Enter date" ng-if="field.type === 'DateTimeField'">
+</md-datepicker>
