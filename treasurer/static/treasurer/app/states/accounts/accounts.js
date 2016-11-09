@@ -48,8 +48,6 @@ app.controller('AccountsCtrl', [
         return function(event, item) {
 
             for (var i = $scope[arrayName].length - 1; i >= 0; i--) {
-                console.log(i);
-                console.log($scope[arrayName][i].id);
                 if ($scope[arrayName][i].id === item.id) {
                     $scope[arrayName][i] = item;
                     return;

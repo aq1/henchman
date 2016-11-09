@@ -5,7 +5,6 @@ app.factory('autoModelsService', ['$http', function($http) {
 
     var service = this;
     service.models = [];
-    window.sss = service;
 
     return {
         init: function(appName) {
@@ -17,4 +16,33 @@ app.factory('autoModelsService', ['$http', function($http) {
             return service.models;
         }
     };
+}]);
+
+
+app.factory('Model', ['$http', function($http) {
+    var Model = function (config) {
+        var model = this;
+        model.name = config.model;
+        model.apiUrl = config.model.split('.');
+        model.apiUrl = '/' + model.apiUrl[0] + '/api/v1/' + model.apiUrl[1].toLowerCase();
+
+        model.query = function() {
+            return $http.get(model.apiUrl);
+        };
+
+        model.get = function(id) {
+            return $http.get(model.apiUrl + '/' + id);
+        };
+
+        model.save = function(item) {
+            if (item.id) {
+                return $http.put(model.apiUrl + '/' + item.id, item);
+            } else {
+                return $http.post(model.apiUrl, item);
+            }
+        };
+
+        return model;
+    };
+    return Model;
 }]);

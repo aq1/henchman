@@ -6,7 +6,9 @@
 </head>
 {% verbatim %}
 <body ng-app="treasurerApp" ng-controller="BodyCtrl" ng-cloak layout="column">
-    <model-form model-name="'treasurer.Transaction'"></model-form>
+    <div style="width: 15%; margin: 0 auto;">
+        <model-form model-name="'treasurer.Transaction'" item-id="1" show-cancel="false"></model-form>
+    </div>
 </body>
 {% endverbatim %}
 {% load staticfiles %}
@@ -23,6 +25,7 @@
 <script src="{% static 'treasurer/auto_models/auto_models.js' %}"></script>
 <script src="{% static 'treasurer/auto_models/model_form.js' %}"></script>
 <script src="{% static 'treasurer/auto_models/model_form_field.js' %}"></script>
+<script src="{% static 'treasurer/auto_models/model_dialog.js' %}"></script>
 
 <script src="{% static 'authentication/app/authentication.js' %}"></script>
 <script src="{% static 'authentication/app/states/login_dialog/login_dialog.js' %}"></script>

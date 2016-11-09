@@ -90,3 +90,20 @@ div.statistic {
 md-dialog form div md-input-container {
     margin-left: 10px;
 }
+
+model-form-field, .model-form-field, .model-form-field model-form-field md-input-container {
+    width: 100%;
+}
+
+.md-datepicker-button {
+    margin-left: -5px !important;
+    padding-left: 0px !important;
+}
+
+model-form-field md-input-container md-datepicker div {
+    width: 80% !important;
+}
+
+.dim {
+    color: #787D84;
+}

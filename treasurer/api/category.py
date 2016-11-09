@@ -15,4 +15,4 @@ class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return self.request.user.categories.all()
+        return Category.objects.all()

@@ -8,6 +8,7 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('authentication.urls')),
+    url(r'^authentication/', include('authentication.urls')),
     url(r'^treasurer/', include('treasurer.urls')),
     url(r'^$', RedirectView.as_view(url='treasurer/', permanent=False), name='index')
 ]

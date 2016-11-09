@@ -15,3 +15,19 @@ utils.factory('utils', [function () {
     };
 
 }]);
+
+
+var capitalizeWord = function(a) {
+    return a[0].toUpperCase() + a.slice(1);
+   }
+
+
+utils.filter('capitalize', function() {
+    return function(input, onlyFirstLetter) {
+        input = input || '';
+        if (onlyFirstLetter) {
+            return capitalizeWord(input);
+        }
+        return input.split(' ').map(capitalizeWord).join(' ')
+    };
+});

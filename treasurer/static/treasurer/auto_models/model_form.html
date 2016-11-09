@@ -3,15 +3,13 @@
         <div layout layout-sm="column">
             <span ng-show="error">{{ error }}</span>
         </div>
-        <div layout layout-sm="column" ng-repeat="field in model.fields" ng-if="field.type != 'AutoField'">
-            <md-input-container flex>
-                <model-form-field field="field"></model-form-field>
-            </md-input-container>
+        <div layout layout-sm="column" ng-repeat="field in model.fields" class="model-form-field">
+            <model-form-field field="field" item="item"></model-form-field>
         </div>
     </md-dialog-content>
     <md-dialog-actions>
         <div class="md-dialog-actions" layout="row"><span flex></span>
-            <md-button ng-click="hide()">Cancel</md-button>
+            <md-button ng-click="cancelCallback()" ng-show="cancelCallback">Cancel</md-button>
             <md-button class="md-primary"
                        ng-click="save(account)"
                        type="submit"
@@ -22,7 +20,7 @@
     </md-dialog-actions>
 </form>
 
-
-<pre>
+<button ng-click="ssss = !ssss">F</button>
+<pre ng-show="ssss">
     {{model | json}}
 </pre>

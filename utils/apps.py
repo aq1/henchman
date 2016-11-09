@@ -24,7 +24,7 @@ class UtilsConfig(AppConfig):
             }
             if isinstance(f, models.ForeignKey):
                 field['config'] = {
-                    'foreign_model': f.related_model._meta.label
+                    'model': f.related_model._meta.label
                 }
 
             data['fields'].append(field)

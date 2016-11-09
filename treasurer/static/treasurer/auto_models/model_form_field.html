@@ -1,11 +1,29 @@
-<label>{{ field.name }}</label>
-<input id="{{ field.name }}"
-       ng-model="name"
-       type="{{ inputType }}"
-       ng-required="field.required"
-       ng-if="inputType">
-
-<textarea ng-model="aa" rows="3" md-select-on-focus ng-if="field.type === 'TextField'">
-</textarea>
-<md-datepicker ng-model="transaction.date" md-placeholder="Enter date" ng-if="field.type === 'DateTimeField'">
-</md-datepicker>
+<md-input-container flex ng-if="field.type != 'AutoField'">
+    <label ng-if="inputType">{{ field.name | capitalize}}</label>
+    <input id="{{ field.name }}"
+           ng-model="item[field.name]"
+           type="{{ inputType }}"
+           ng-required="field.required"
+           ng-if="inputType">
+    <textarea ng-model="item[field.name]"
+              rows="3"
+              md-select-on-focus
+              ng-if="field.type === 'TextField'"
+              placeholder="{{ field.name | capitalize}}">
+    </textarea>
+    <md-datepicker ng-model="item[field.name]"
+                   md-placeholder="{{ field.name | capitalize}}"
+                   md-hide-icons="triangle"
+                   ng-if="field.type === 'DateTimeField'">
+    </md-datepicker>
+    <div ng-if="field.type.search('ForeignKey') !== -1">
+        <md-select md-on-open="getForeignOptions()" ng-model="item[field.name]" placeholder="{{ field.name | capitalize }}">
+            <md-option ng-click="openForeignModelDialog($event)" class="dim">
+                New {{ field.name }}...
+            </md-option>
+            <md-option ng-repeat="item in items" value="{{ item.id }}">
+                {{ '-'.repeat(item.level || 0) + ' ' }}{{ item.name }}
+            </md-option>
+        </md-select>
+    </div>
+</md-input-container>

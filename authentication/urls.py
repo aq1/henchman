@@ -7,8 +7,8 @@ from authentication import views
 
 admin.autodiscover()
 
-router = DefaultRouter()
-router.register(r'users', views.UserViewSet)
+router = DefaultRouter(trailing_slash=False)
+router.register(r'user', views.UserViewSet)
 
 
 urlpatterns = [
