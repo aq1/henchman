@@ -28,11 +28,11 @@ app.controller('MainPageCtrl', [
         $scope.user = user;
 
         if (user) {
-            Account.query(function(r) {
-                $scope.accounts = r.results;
+            Account.query().then(function(r) {
+                $scope.accounts = r.data;
             });
-            Transaction.last(function(r) {
-                $scope.transactions = r.results;
+            Transaction.request('get', 'last').then(function(r) {
+                $scope.transactions = r.data;
             });
         } else {
             $scope.accounts = [];

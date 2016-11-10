@@ -24,7 +24,7 @@ class TransactionViewSet(ModelViewSet):
 
     @list_route()
     def last(self, request):
-        transactions = Transaction.objects.filter(account__user_id=request.user.id)
+        transactions = Transaction.objects.filter(account__users=request.user.id)
         page = self.paginate_queryset(transactions)
         if page is not None:
             serializer = self.get_serializer(page, many=True)
