@@ -5,11 +5,13 @@ app.controller('MainPageCtrl', [
     '$http',
     'AuthorizationService',
     'Model',
+    'ModelDialog',
     'utils',
     function ($scope,
               $http,
               AuthorizationService,
               Model,
+              ModelDialog,
               utils) {
 
     window.as = $scope;
@@ -20,6 +22,8 @@ app.controller('MainPageCtrl', [
 
     $scope.showLoginDialog = AuthorizationService.showDialog;
     $scope.logout = AuthorizationService.logout;
+
+    $scope.modelDialog = ModelDialog;
 
     var Account = new Model({model: 'treasurer.Account'});
     var Transaction = new Model({model: 'treasurer.Transaction'});

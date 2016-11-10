@@ -1,19 +1,15 @@
 <div>
     <div flex layout="row">
         <div>
-            <md-card ng-hide="!user" class="account account-new" ng-click="showAccountDialog($event)">
+            <md-card ng-hide="!user" class="account account-new" ng-click="modelDialog.show($event, {model: 'treasurer.Account'})">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">{{ account.name }}</span>
-                        <span class="md-subhead ">{{ account.total }}</span>
+                        <md-icon>add</md-icon>
+                        <span ng-show="!accounts.length">Add account</span>
                     </md-card-title-text>
                 </md-card-title>
-                <!--<span class="md-headline">-->
-                    <!--<md-icon>add</md-icon>-->
-                    <!--<span ng-show="!accounts.length">Add account</span>-->
-                <!--</span>-->
             </md-card>
-            <md-card ng-repeat="account in accounts" md-theme="default" class="account" ng-click="showAccountDialog($event, account.id)">
+            <md-card ng-repeat="account in accounts" md-theme="default" class="account" ng-click="modelDialog.show($event, {model: 'treasurer.Account'}, account.id)">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{ account.name }}</span>
@@ -37,7 +33,7 @@
         <div flex layout="column" class="statistic"></div>
     </div>
     <div class="relative">
-        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showTransactionDialog($event)"
+        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"
                    ng-hide="!accounts.length">
             <md-icon>add</md-icon>
         </md-button>
