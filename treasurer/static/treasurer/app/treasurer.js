@@ -17,12 +17,12 @@ app.config(['$httpProvider', function($httpProvider){
 app.config(['$routeProvider', '$resourceProvider',
     function ($routeProvider, $resourceProvider) {
           $routeProvider.
-            when('/accounts/', {
-                templateUrl: '/static/treasurer/app/states/accounts/accounts.html',
-                controller: 'AccountsCtrl'
+            when('/', {
+                templateUrl: '/static/treasurer/app/states/main_page/main_page.html',
+                controller: 'MainPageCtrl'
             }).
             otherwise({
-                redirectTo: '/accounts/'
+                redirectTo: '/'
             });
 
           $resourceProvider.defaults.stripTrailingSlashes = true;

@@ -19,9 +19,16 @@ app.factory('autoModelsService', ['$http', function($http) {
 }]);
 
 
-app.factory('Model', ['$http', function($http) {
+app.factory('Model', ['$http', 'autoModelsService', 'utils', function($http, autoModelsService, utils) {
     var Model = function (config) {
         var model = this;
+
+        if (!utils.findInArray(autoModelsService.getModels(), 'name', config.model)) {
+            throw {
+                message: 'No model found with name ' + config.model
+            }
+        }
+
         model.name = config.model;
         model.apiUrl = config.model.split('.');
         model.apiUrl = '/' + model.apiUrl[0] + '/api/v1/' + model.apiUrl[1].toLowerCase();

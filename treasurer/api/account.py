@@ -22,7 +22,8 @@ class AccountViewSet(ModelViewSet):
     queryset = Account.objects.all()
 
     def perform_create(self, serializer):
-        serializer.save(users=[self.request.user])
+        obj = serializer.save()
+        obj.users.add(self.request.user)
 
     def get_queryset(self):
         return Account.objects.filter(users=self.request.user)

@@ -107,3 +107,7 @@ model-form-field md-input-container md-datepicker div {
 .dim {
     color: #787D84;
 }
+
+.md-dialog-container, md-dialog {
+    padding: 15px;
+}

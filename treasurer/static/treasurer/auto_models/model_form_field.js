@@ -24,6 +24,10 @@ app.directive('modelFormField', function() {
                 CharField: 'text',
             })[$scope.field.type];
 
+            $scope.fieldIsActive = function(field) {
+                return field.type != 'AutoField' && field.name != 'user';
+            };
+
             $scope.getForeignOptions = function() {
                 var model = new Model($scope.field.config);
                 model.query().then(function(r) {

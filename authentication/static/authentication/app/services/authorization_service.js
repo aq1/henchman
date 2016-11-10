@@ -34,7 +34,7 @@ app.factory('AuthorizationService', ['$http', '$rootScope', '$mdDialog', functio
             var token = service.token || window.localStorage.token;
             if (token) {
                 setToken(token);
-                $http.get('/auth/api/v1/' + 'users/get_current/').then(function (r) {
+                $http.get('/auth/api/v1/' + 'users/get_current').then(function (r) {
                     setUser(r.data);
                 });
             }

@@ -1,21 +1,15 @@
 var app = angular.module('treasurerApp');
 
-app.controller('AccountsCtrl', [
+app.controller('MainPageCtrl', [
     '$scope',
     '$http',
     'AuthorizationService',
-    'AccountDialogService',
-    'Account',
-    'TransactionDialogService',
-    'Transaction',
+    'Model',
     'utils',
     function ($scope,
               $http,
               AuthorizationService,
-              AccountDialogService,
-              Account,
-              TransactionDialogService,
-              Transaction,
+              Model,
               utils) {
 
     window.as = $scope;
@@ -25,9 +19,10 @@ app.controller('AccountsCtrl', [
     $scope.transactions = [];
 
     $scope.showLoginDialog = AuthorizationService.showDialog;
-    $scope.showAccountDialog = AccountDialogService.showDialog;
-    $scope.showTransactionDialog = TransactionDialogService.showDialog;
     $scope.logout = AuthorizationService.logout;
+
+    var Account = new Model({model: 'treasurer.Account'});
+    var Transaction = new Model({model: 'treasurer.Transaction'});
 
     $scope.$on('userIsSet', function(event, user) {
         $scope.user = user;

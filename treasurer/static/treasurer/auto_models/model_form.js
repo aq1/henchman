@@ -22,6 +22,8 @@ app.directive('modelForm', function() {
                 $scope.Model.get($scope.itemId).then(function(r) {
                     $scope.item = r.data;
                 });
+            } else {
+                $scope.item = {};
             }
 
             $scope.save = function() {

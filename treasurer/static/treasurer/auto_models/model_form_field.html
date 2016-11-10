@@ -1,4 +1,4 @@
-<md-input-container flex ng-if="field.type != 'AutoField'">
+<md-input-container flex ng-if="fieldIsActive(field)">
     <label ng-if="inputType">{{ field.name | capitalize}}</label>
     <input id="{{ field.name }}"
            ng-model="item[field.name]"
