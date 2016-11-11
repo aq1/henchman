@@ -33,10 +33,10 @@ app.controller('MainPageCtrl', [
 
         if (user) {
             Account.query().then(function(r) {
-                $scope.accounts = r.data;
+                $scope.accounts = r.data.results;
             });
             Transaction.request('get', 'last').then(function(r) {
-                $scope.transactions = r.data;
+                $scope.transactions = r.data.results;
             });
         } else {
             $scope.accounts = [];
@@ -56,8 +56,15 @@ app.controller('MainPageCtrl', [
         };
     };
 
-    $scope.$on('accountSaved', updateArray('accounts'));
-    $scope.$on('transactionSaved', updateArray('transactions'));
+    var transactionSaved = function(event, item) {
+        updateArray('transactions')(event, item);
+        Account.get(item.account).then(function(r) {
+            updateArray('accounts')(event, r.data);
+        });
+    };
+
+    $scope.$on('treasurer.Account:saved', updateArray('accounts'));
+    $scope.$on('treasurer.Transaction:saved', transactionSaved);
 
     if (!$scope.user) {
         AuthorizationService.getUser();

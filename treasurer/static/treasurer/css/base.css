@@ -56,22 +56,21 @@ md-list-item > button {
     text-transform: none;
 }
 
-.account {
+.account-card {
     cursor: pointer;
     margin-top: -30px;
     display: inline-block;
     width: 200px;
-    overflow-x: hidden;
+    overflow: hidden;
     height: 110px;
 }
 
-.account-new {
-    width: auto;
-    padding: 0 20px;
-    text-align: center;
-    vertical-align: middle;
-    margin-top: -110px;
-    padding-top: 40px;
+.transactions-list {
+    margin-top: 20px;
+}
+
+.transaction-card {
+    cursor: pointer;
 }
 
 .account-new:hover {
@@ -101,13 +100,24 @@ model-form-field, .model-form-field, .model-form-field model-form-field md-input
 }
 
 model-form-field md-input-container md-datepicker div {
-    width: 80% !important;
+    width: 75% !important;
 }
 
 .dim {
     color: #787D84;
 }
 
-.md-dialog-container, md-dialog {
-    padding: 15px;
+md-dialog model-form {
+    margin-right: 15px;
+}
+
+.fab-fixed {
+    position: fixed;
+    z-index: 1000;
+    bottom: 0px;
+    right: 0px;
+}
+
+.model-dialog {
+    width: 350px;
 }

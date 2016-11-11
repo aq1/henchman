@@ -10,7 +10,8 @@ app.directive('modelForm', function() {
             showCancel: '=',
             cancelCallback: '&',
         },
-        controller: ['$scope', '$timeout', 'autoModelsService', 'Model', 'utils', function($scope, $timeout, autoModelsService, Model, utils) {
+        controller: ['$rootScope', '$scope', '$timeout', '$mdToast', 'autoModelsService', 'Model', 'utils',
+        function($rootScope, $scope, $timeout, $mdToast, autoModelsService, Model, utils) {
 
             if ($scope.showCancel === false) {
                 delete $scope.cancelCallback;
@@ -27,12 +28,13 @@ app.directive('modelForm', function() {
             }
 
             $scope.save = function() {
-                $scope.Model.save($scope.item).then(function() {
+                $scope.Model.save($scope.item).then(function(r) {
+                    $rootScope.$broadcast($scope.modelName + ':saved', r.data);
                     if ($scope.cancelCallback) {
                         $scope.cancelCallback();
                     }
-                }
-                );
+                    $mdToast.showSimple('Saved ' + $scope.modelName.split('.')[1]);
+                });
             };
 
             var init = function() {

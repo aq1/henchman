@@ -94,7 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'en-US'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -121,6 +121,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
+    'PAGE_SIZE': 10,
     'UNICODE_JSON': True,
 }
 

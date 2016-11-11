@@ -11,7 +11,7 @@ app.directive('modelFormField', function() {
         link: function(scope, element, attr) {
             if (scope.field.type == 'DateTimeField') {
                 scope.$watch('item', function(newVal, oldVal) {
-                    if (newVal) {
+                    if (newVal && newVal[scope.field.name]) {
                         newVal[scope.field.name] = new Date(newVal[scope.field.name]);
                     }
                 });
@@ -30,7 +30,7 @@ app.directive('modelFormField', function() {
 
             $scope.getForeignOptions = function() {
                 var model = new Model($scope.field.config);
-                model.query().then(function(r) {
+                model.query({all: 1}).then(function(r) {
                     $scope.items = r.data;
                 });
             };

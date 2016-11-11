@@ -33,8 +33,21 @@ app.factory('Model', ['$http', 'autoModelsService', 'utils', function($http, aut
         model.apiUrl = config.model.split('.');
         model.apiUrl = '/' + model.apiUrl[0] + '/api/v1/' + model.apiUrl[1].toLowerCase();
 
-        model.query = function() {
-            return $http.get(model.apiUrl);
+        model.query = function(params) {
+            if (!params) {
+                params = {};
+            }
+
+            if (!params.all && !params.page) {
+                params.page = 1;
+            }
+
+            var query = [];
+            for (var k in params) {
+                query.push(k + '=' + params[k]);
+            }
+
+            return $http.get(model.apiUrl + '?' + query.join('&'));
         };
 
         model.get = function(id) {
@@ -52,7 +65,7 @@ app.factory('Model', ['$http', 'autoModelsService', 'utils', function($http, aut
         model.request = function(method, url, data) {
             return $http({
                 method: method,
-                url: model.apiUrl + '/' + url,
+                url: model.apiUrl + '/' + url + '?page=1',
                 data: data
             });
         }

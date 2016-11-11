@@ -1,18 +1,18 @@
 from django.http import HttpResponse
 from django.db import IntegrityError
 
-from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 
 from authentication.models import User
 
+from treasurer.api import BaseModelViewSet
 from treasurer.models import Account, Transaction
 from treasurer.serializers import AccountSerializer, TransactionSerializer
 
 
-class AccountViewSet(ModelViewSet):
+class AccountViewSet(BaseModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.

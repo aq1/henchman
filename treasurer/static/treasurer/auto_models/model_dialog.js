@@ -25,9 +25,7 @@ app.factory('ModelDialog', ['$rootScope', '$mdDialog',
                 controller: ['$scope', 'config', 'itemId', function($scope, config, itemId) {
                     $scope.hide = $mdDialog.hide;
                     $scope.config = config;
-                    $scope.item = {
-                        id: itemId
-                    };
+                    $scope.itemId = itemId;
                 }]
             });
         }
