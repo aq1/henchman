@@ -18,25 +18,21 @@
         </md-card>
     </div>
     <div flex layout="row">
-        <div flex layout="column" class="transactions-list" ng-show="transactions.length">
+        <div flex="30" layout="column" class="transactions-list" ng-show="transactions.length">
             <md-card ng-repeat="transaction in transactions" md-theme="default" class="transaction-card"
                      ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{ transaction.total }}</span>
-                        <span class="md-subhead">{{ transaction.category_name }}</span>
+                        <span class="md-subhead dim">{{ transaction.account_name }}</span>
                     </md-card-title-text>
                     <md-card-title-media>
-                        <div>
-                        </div>
-                        <div class="dim">
-                            <span>{{ transaction.account_name }}</span>
-                        </div>
+                        <span class="md-subhead">{{ transaction.category_name }}</span>
                     </md-card-title-media>
                 </md-card-title>
             </md-card>
         </div>
-        <div flex layout="column" class="statistic"></div>
+        <div flex="70" layout="column" class="statistic"></div>
     </div>
     <div class="fab-fixed">
         <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"

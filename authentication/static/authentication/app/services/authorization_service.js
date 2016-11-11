@@ -25,7 +25,7 @@ app.factory('AuthorizationService', ['$http', '$rootScope', '$mdDialog', functio
             return $http.post('/auth/register/', {username: username, password: password});
         },
         logout: function () {
-            $http.get('/auth/api/v1/' + 'user/logout/').then(function () {
+            $http.get('/auth/api-auth/logout/').then(function () {
                 setToken('');
                 setUser(null);
             });
@@ -34,7 +34,7 @@ app.factory('AuthorizationService', ['$http', '$rootScope', '$mdDialog', functio
             var token = service.token || window.localStorage.token;
             if (token) {
                 setToken(token);
-                $http.get('/auth/api/v1/' + 'user/get_current').then(function (r) {
+                $http.get('/auth/api/v1/user/get_current').then(function (r) {
                     setUser(r.data);
                 });
             }

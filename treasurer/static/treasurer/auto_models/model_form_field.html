@@ -9,15 +9,17 @@
               rows="3"
               md-select-on-focus
               ng-if="field.type === 'TextField'"
+              ng-required="field.required"
               placeholder="{{ field.name | capitalize}}">
     </textarea>
     <md-datepicker ng-model="item[field.name]"
                    md-placeholder="{{ field.name | capitalize}}"
+                   ng-required="field.required"
                    md-hide-icons="triangle"
                    ng-if="field.type === 'DateTimeField'">
     </md-datepicker>
     <div ng-if="field.type.search('ForeignKey') !== -1">
-        <md-select md-on-open="getForeignOptions()" ng-model="item[field.name]" placeholder="{{ field.name | capitalize }}">
+        <md-select ng-required="field.required" md-on-open="getForeignOptions()" ng-model="item[field.name]" placeholder="{{ field.name | capitalize }}">
             <md-option ng-click="openForeignModelDialog($event)" class="dim">
                 New {{ field.name }}...
             </md-option>

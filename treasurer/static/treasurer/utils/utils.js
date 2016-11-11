@@ -24,7 +24,11 @@ var capitalizeWord = function(a) {
 
 utils.filter('capitalize', function() {
     return function(input, onlyFirstLetter) {
-        input = input || '';
+
+        if (!input) {
+            return;
+        }
+
         if (onlyFirstLetter) {
             return capitalizeWord(input);
         }

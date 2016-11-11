@@ -40,6 +40,7 @@ app.controller('MainPageCtrl', [
             });
         } else {
             $scope.accounts = [];
+            $scope.transactions = [];
         }
     });
 

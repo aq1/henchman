@@ -4,6 +4,7 @@ var app = angular.module('autoModels', ['utils']);
 app.factory('autoModelsService', ['$http', function($http) {
 
     var service = this;
+    window.ams = service;
     service.models = [];
 
     return {

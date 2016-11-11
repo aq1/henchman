@@ -71,6 +71,11 @@ md-list-item > button {
 
 .transaction-card {
     cursor: pointer;
+    //width: 250px;
+}
+
+.transaction-card md-card-title-media {
+    text-align: right;
 }
 
 .account-new:hover {
