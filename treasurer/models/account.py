@@ -17,7 +17,7 @@ class Account(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return '"{self.name}" {self.total}'.format(self=self)
+        return '"{self.name}"'.format(self=self)
 
 
 @receiver(pre_save, sender=Transaction)

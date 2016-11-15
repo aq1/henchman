@@ -16,4 +16,4 @@ class Transaction(models.Model):
         ordering = ['-date']
 
     def __str__(self):
-        return '{self.account}: transaction by {self.user}'.format(self=self)
+        return '{self.account} {self.total}: transaction by {self.user}'.format(self=self)

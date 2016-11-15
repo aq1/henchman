@@ -1,9 +1,13 @@
+import datetime
+
+from django.db import models
+
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import list_route
 
 from treasurer.api import BaseModelViewSet
-from treasurer.models import Transaction
+from treasurer.models import Transaction, Category
 from treasurer.serializers import TransactionSerializer
 
 
@@ -32,3 +36,10 @@ class TransactionViewSet(BaseModelViewSet):
 
         serializer = self.get_serializer(transactions, many=True)
         return Response(serializer.data)
+
+    @list_route(methods=['get'])
+    def statistics(self, request):
+        month = request.GET.get('month', datetime.datetime.now().month)
+        statistics = Category.objects.filter(level=0, transactions__date__month=month)\
+                             .annotate(total=models.Sum('transactions__total')).values('id', 'name', 'total')
+        return Response(statistics)
