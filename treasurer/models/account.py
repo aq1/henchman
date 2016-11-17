@@ -27,5 +27,5 @@ def recalculate_total(**kwargs):
         diff -= Transaction.objects.get(id=kwargs['instance'].id).total
 
     acc = Account.objects.get(id=kwargs['instance'].account_id)
-    acc.total += diff
+    acc.total = models.F('total') + diff
     acc.save()
