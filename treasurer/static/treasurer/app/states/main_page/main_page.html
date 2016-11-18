@@ -19,7 +19,7 @@
     </div>
     <div flex layout="row">
         <div flex="30" layout="column" class="transactions-list" ng-show="transactions.length">
-            <md-card ng-repeat="transaction in transactions" md-theme="default" class="transaction-card"
+            <md-card ng-repeat="transaction in transactions | limitTo: 10" md-theme="default" class="transaction-card"
                      ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
                 <md-card-title>
                     <md-card-title-text>
