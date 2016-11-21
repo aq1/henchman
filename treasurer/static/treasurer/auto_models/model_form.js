@@ -12,7 +12,7 @@ app.directive('modelForm', function() {
         },
         controller: ['$rootScope', '$scope', '$timeout', '$mdToast', 'autoModelsService', 'Model', 'utils',
         function($rootScope, $scope, $timeout, $mdToast, autoModelsService, Model, utils) {
-
+            window.mfs = $scope;
             if ($scope.showCancel === false) {
                 delete $scope.cancelCallback;
             }

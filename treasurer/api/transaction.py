@@ -40,6 +40,14 @@ class TransactionViewSet(BaseModelViewSet):
     @list_route(methods=['get'])
     def statistics(self, request):
         month = request.GET.get('month', datetime.datetime.now().month)
-        statistics = Category.objects.filter(level=0, transactions__date__month=month)\
-                             .annotate(total=models.Sum('transactions__total')).values('id', 'name', 'total')
+        parent_id = request.GET.get('id')
+
+        if parent_id:
+            statistics = Category.objects.get(id=parent_id).get_children()
+        else:
+            statistics = Category.objects.filter(level=0)
+
+        statistics = (statistics.filter(transactions__date__month=month)
+                                .annotate(total=models.Sum('transactions__total'))
+                                .values('id', 'name', 'total'))
         return Response(statistics)

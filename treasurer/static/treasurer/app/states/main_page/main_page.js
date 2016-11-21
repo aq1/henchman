@@ -4,12 +4,14 @@ app.controller('MainPageCtrl', [
     '$scope',
     '$http',
     'AuthorizationService',
+    'ChartService',
     'Model',
     'ModelDialog',
     'utils',
     function ($scope,
               $http,
               AuthorizationService,
+              ChartService,
               Model,
               ModelDialog,
               utils) {
@@ -62,6 +64,7 @@ app.controller('MainPageCtrl', [
         Account.get(item.account).then(function(r) {
             updateArray('accounts')(event, r.data);
         });
+        ChartService.updateChart();
     };
 
     $scope.$on('treasurer.Account:saved', updateArray('accounts'));

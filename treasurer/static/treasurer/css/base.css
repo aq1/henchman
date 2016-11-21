@@ -130,3 +130,12 @@ md-dialog model-form {
 .negative {
     color: #FC5382;
 }
+
+.positive {
+    color: #02CCBA;
+}
+
+#treasurer-chart {
+    margin-left: 100px;
+    margin-top: 100px;
+}

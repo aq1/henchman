@@ -23,7 +23,7 @@
                      ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline" ng-class="{negative: transaction.total < 0}">{{ transaction.total }}</span>
+                        <span class="md-headline" ng-class="{positive: transaction.total > 0}">{{ transaction.total }}</span>
                         <span class="md-subhead dim">{{ transaction.account_name }}</span>
                     </md-card-title-text>
                     <md-card-title-media>
