@@ -126,3 +126,7 @@ md-dialog model-form {
 .model-dialog {
     width: 350px;
 }
+
+.negative {
+    color: #FC5382;
+}
