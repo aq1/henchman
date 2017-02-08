@@ -61,9 +61,6 @@ app.controller('MainPageCtrl', [
 
     var transactionSaved = function(event, item) {
         updateArray('transactions')(event, item);
-        Account.get(item.account).then(function(r) {
-            updateArray('accounts')(event, r.data);
-        });
         ChartService.updateChart();
     };
 

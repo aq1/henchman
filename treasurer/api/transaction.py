@@ -43,11 +43,20 @@ class TransactionViewSet(BaseModelViewSet):
         parent_id = request.GET.get('id')
 
         if parent_id:
-            statistics = Category.objects.get(id=parent_id).get_children()
+            root_categories = Category.objects.filter(id=parent_id)
         else:
-            statistics = Category.objects.filter(level=0)
+            root_categories = Category.objects.filter(level=0)
 
-        statistics = (statistics.filter(transactions__date__month=month)
-                                .annotate(total=models.Sum('transactions__total'))
-                                .values('id', 'name', 'total'))
+        root_categories = root_categories
+
+        statistics = []
+
+        for category in root_categories:
+            total = (category.get_descendants(include_self=True)
+                             .filter(transactions__date__month=month)
+                             .aggregate(t=models.Sum('transactions__total'))['t'])
+            if not total:
+                continue
+            statistics.append({'id': category.id, 'name': category.name, 'total': total})
+
         return Response(statistics)

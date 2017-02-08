@@ -46,7 +46,8 @@ app.factory('ChartService', ['$http', 'Model', 'utils', function($http, Model, u
                 });
             }
 	    };
-        service.pie = new d3pie('#treasurer-chart', config);
+	    console.log(config);
+            service.pie = new d3pie('treasurer-chart', config);
     };
 
     return {

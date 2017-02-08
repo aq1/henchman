@@ -1,4 +1,13 @@
-var app = angular.module('treasurerApp', ['ngMaterial', 'ngRoute', 'ngResource', 'authentication', 'utils', 'autoModels', 'chart']);
+var app = angular.module('treasurerApp', [
+    'ngMaterial',
+    'ngRoute',
+    'ngResource',
+    'md.data.table',
+    'authentication',
+    'utils',
+    'autoModels',
+    'chart'
+]);
 
 app.constant('urls', {
     apiRoot: '/treasurer/api/v1/',
@@ -6,7 +15,7 @@ app.constant('urls', {
     authApi: '/auth/api/v1/'
 });
 
-app.config(['$httpProvider', function($httpProvider){
+app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
     $httpProvider.defaults.xsrfCookieName = "csrftoken";
     $httpProvider.defaults.xsrfHeaderName = "X-CSRFToken";
@@ -15,17 +24,17 @@ app.config(['$httpProvider', function($httpProvider){
 
 
 app.config(['$routeProvider', '$resourceProvider',
-    function ($routeProvider, $resourceProvider) {
-          $routeProvider.
-            when('/', {
-                templateUrl: '/static/treasurer/app/states/main_page/main_page.html',
-                controller: 'MainPageCtrl'
-            }).
-            otherwise({
-                redirectTo: '/'
-            });
+    function($routeProvider, $resourceProvider) {
+        $routeProvider.
+        when('/', {
+            templateUrl: '/static/treasurer/app/states/main_page/main_page.html',
+            controller: 'MainPageCtrl'
+        }).
+        otherwise({
+            redirectTo: '/'
+        });
 
-          $resourceProvider.defaults.stripTrailingSlashes = true;
+        $resourceProvider.defaults.stripTrailingSlashes = true;
     }
 ]);
 

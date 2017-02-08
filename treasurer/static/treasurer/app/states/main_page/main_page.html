@@ -1,39 +1,31 @@
-<div>
-    <div flex layout="row">
-        <md-card ng-hide="!user" class="account-card" ng-click="modelDialog.show($event, {model: 'treasurer.Account'})">
-            <md-card-title>
-                <md-card-title-text>
-                    <md-icon>add</md-icon>
-                    <span ng-show="!accounts.length">Add account</span>
-                </md-card-title-text>
-            </md-card-title>
-        </md-card>
-        <md-card ng-repeat="account in accounts" md-theme="default" class="account-card" ng-click="modelDialog.show($event, {model: 'treasurer.Account'}, account.id)">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline" ng-class="{negative: account.total < account.limit}">{{ account.total }}</span>
-                    <span class="md-subhead">{{ account.name }}</span>
-                </md-card-title-text>
-            </md-card-title>
-        </md-card>
+<div flex layout="row">
+    <div layout="column" flex="60" class="transactions-list" ng-show="transactions.length">
+        <md-table-container>
+          <table md-table multiple ng-model="transactions">
+            <thead md-head>
+              <tr md-row>
+                  <th>Date</th>
+                  <th>Account</th>
+                  <th>Category</th>
+                  <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row md-select="dessert"
+                  md-select-id="name"
+                  ng-repeat="transaction in transactions"
+                  class="transaction-row"
+                  ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
+                <td md-cell>{{ transaction.date | date : 'dd.MM.yyyy'}}</td>
+                <td md-cell>{{ transaction.account_name }}</td>
+                <td md-cell>{{ transaction.category_name }}</td>
+                <td md-cell><span ng-class="{positive: transaction.total > 0}">{{ transaction.total }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
     </div>
-    <div flex layout="row">
-        <div flex="30" layout="column" class="transactions-list" ng-show="transactions.length">
-            <md-card ng-repeat="transaction in transactions | limitTo: 10" md-theme="default" class="transaction-card"
-                     ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline" ng-class="{positive: transaction.total > 0}">{{ transaction.total }}</span>
-                        <span class="md-subhead dim">{{ transaction.account_name }}</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                        <span class="md-subhead">{{ transaction.category_name }}</span>
-                    </md-card-title-media>
-                </md-card-title>
-            </md-card>
-        </div>
-        <div id="treasurer-chart" flex="70" layout="column" class="statistic"></div>
-    </div>
+    <div layout="column" flex="30" id="treasurer-chart"></div>
     <div class="fab-fixed">
         <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"
                    ng-hide="!accounts.length">

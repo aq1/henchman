@@ -35,13 +35,16 @@
         <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp" ng-show="user">
             <md-list>
                 <md-subheader class="md-no-sticky">
-                    Finance
+                    <span>Accounts</span>
+                    <md-button>
+                        new
+                    </md-button>
                 </md-subheader>
-                <md-list-item>
-                    <md-button>Accounts</md-button>
-                </md-list-item>
-                <md-list-item>
-                    <md-button>Transactions</md-button>
+                <md-list-item ng-repeat="account in accounts">
+                    <md-button>
+                        <span class="align-left">{{ account.name }}</span>
+                        <span class="align-right" ng-class="{negative: account.total < 0}">{{ account.total }}</span>
+                    </md-button>
                 </md-list-item>
             </md-list>
         </md-sidenav>
@@ -61,6 +64,7 @@
 <script src="{% static 'treasurer/bower_components/angular-material/angular-material.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-resource/angular-resource.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-route/angular-route.min.js' %}"></script>
+<script src="{% static 'treasurer/bower_components/angular-material-data-table/dist/md-data-table.min.js' %}"></script>
 
 <script src="{% static 'treasurer/utils/utils.js' %}"></script>
 
@@ -79,6 +83,7 @@
 <script src="{% static 'treasurer/app/states/body/body.js' %}"></script>
 <script src="{% static 'treasurer/app/states/chart/chart.js' %}"></script>
 
+<link rel="stylesheet" href="{% static 'treasurer/bower_components/angular-material-data-table/dist/md-data-table.min.css' %}">
 <link rel="stylesheet" href="{% static 'treasurer/bower_components/angular-material/angular-material.min.css' %}">
 <link rel="stylesheet" href="{% static 'treasurer/css/base.css' %}">
 <link rel="stylesheet" href="{% static 'treasurer/css/font.css' %}">

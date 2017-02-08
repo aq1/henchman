@@ -69,9 +69,8 @@ md-list-item > button {
     margin-top: 20px;
 }
 
-.transaction-card {
+.transaction-row {
     cursor: pointer;
-    //width: 250px;
 }
 
 .transaction-card md-card-title-media {
@@ -136,6 +135,11 @@ md-dialog model-form {
 }
 
 #treasurer-chart {
-    margin-left: 100px;
-    margin-top: 100px;
+}
+
+.align-left {
+	float: left;
+}
+.align-right {
+	float: right;
 }
