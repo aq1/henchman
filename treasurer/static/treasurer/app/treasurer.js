@@ -3,6 +3,7 @@ var app = angular.module('treasurerApp', [
     'ngRoute',
     'ngResource',
     'md.data.table',
+    'googlechart',
     'authentication',
     'utils',
     'autoModels',
@@ -39,8 +40,7 @@ app.config(['$routeProvider', '$resourceProvider',
 ]);
 
 
-app.run(['autoModelsService', 'ChartService', function(autoModelsService, ChartService) {
+app.run(['autoModelsService', 'ChartService', function(autoModelsService) {
     autoModelsService.init('treasurer');
     autoModelsService.init('authentication');
-    ChartService.init();
 }]);

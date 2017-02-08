@@ -56,9 +56,8 @@
 {% endverbatim %}
 {% load staticfiles %}
 
-<script src="{% static 'treasurer/bower_components/d3/d3.min.js' %}"></script>
-<script src="{% static 'treasurer/bower_components/d3pie.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular/angular.min.js' %}"></script>
+<script src="{% static 'treasurer/bower_components/angular-google-chart/ng-google-chart.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-animate/angular-animate.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-aria/angular-aria.min.js' %}"></script>
 <script src="{% static 'treasurer/bower_components/angular-material/angular-material.min.js' %}"></script>
@@ -81,6 +80,7 @@
 <script src="{% static 'treasurer/app/treasurer.js' %}"></script>
 <script src="{% static 'treasurer/app/states/main_page/main_page.js' %}"></script>
 <script src="{% static 'treasurer/app/states/body/body.js' %}"></script>
+<script src="{% static 'treasurer/app/states/chart/chart_service.js' %}"></script>
 <script src="{% static 'treasurer/app/states/chart/chart.js' %}"></script>
 
 <link rel="stylesheet" href="{% static 'treasurer/bower_components/angular-material-data-table/dist/md-data-table.min.css' %}">
