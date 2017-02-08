@@ -43,7 +43,7 @@ class TransactionViewSet(BaseModelViewSet):
         parent_id = request.GET.get('id')
 
         if parent_id:
-            root_categories = Category.objects.filter(id=parent_id)
+            root_categories = Category.objects.filter(parent_id=parent_id)
         else:
             root_categories = Category.objects.filter(level=0)
 
@@ -53,7 +53,8 @@ class TransactionViewSet(BaseModelViewSet):
 
         for category in root_categories:
             total = (category.get_descendants(include_self=True)
-                             .filter(transactions__date__month=month)
+                             .filter(transactions__date__month=month,
+                                     transactions__total__lt=0)
                              .aggregate(t=models.Sum('transactions__total'))['t'])
             if not total:
                 continue
