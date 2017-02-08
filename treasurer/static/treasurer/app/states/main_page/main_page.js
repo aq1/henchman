@@ -19,7 +19,6 @@ app.controller('MainPageCtrl', [
     window.as = $scope;
 
     $scope.user = null;
-    $scope.accounts = [];
     $scope.transactions = [];
 
     $scope.showLoginDialog = AuthorizationService.showDialog;
@@ -27,43 +26,24 @@ app.controller('MainPageCtrl', [
 
     $scope.modelDialog = ModelDialog;
 
-    var Account = new Model({model: 'treasurer.Account'});
     var Transaction = new Model({model: 'treasurer.Transaction'});
 
     $scope.$on('userIsSet', function(event, user) {
         $scope.user = user;
 
         if (user) {
-            Account.query().then(function(r) {
-                $scope.accounts = r.data.results;
-            });
             Transaction.request('get', 'last').then(function(r) {
                 $scope.transactions = r.data.results;
             });
         } else {
-            $scope.accounts = [];
             $scope.transactions = [];
         }
     });
 
-    var updateArray = function(arrayName) {
-        return function(event, item) {
-
-            for (var i = $scope[arrayName].length - 1; i >= 0; i--) {
-                if ($scope[arrayName][i].id === item.id) {
-                    $scope[arrayName][i] = item;
-                    return;
-                }
-            }
-            $scope[arrayName].unshift(item);
-        };
-    };
-
     var transactionSaved = function(event, item) {
-        updateArray('transactions')(event, item);
+        utils.updateArray($scope.transactions)(event, item);
     };
 
-    $scope.$on('treasurer.Account:saved', updateArray('accounts'));
     $scope.$on('treasurer.Transaction:saved', transactionSaved);
 
     if (!$scope.user) {

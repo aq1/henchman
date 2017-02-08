@@ -36,14 +36,19 @@
             <md-list>
                 <md-subheader class="md-no-sticky">
                     <span>Accounts</span>
-                    <md-button>
-                        new
-                    </md-button>
                 </md-subheader>
                 <md-list-item ng-repeat="account in accounts">
-                    <md-button>
+                    <md-button ng-click="modelDialog.show($event, {model: 'treasurer.Account'}, account.id)">
                         <span class="align-left">{{ account.name }}</span>
-                        <span class="align-right" ng-class="{negative: account.total < 0}">{{ account.total }}</span>
+                        <span class="align-right" ng-class="{negative: account.total < 0}">
+                            {{ account.total }}<span>{{ account.currency || '&#8381;'}}</span>
+                        </span>
+                    </md-button>
+                </md-list-item>
+                <md-list-item>
+                    <md-button ng-click="modelDialog.show($event, {model: 'treasurer.Account'})">
+                        <md-icon>add</md-icon>
+                        new
                     </md-button>
                 </md-list-item>
             </md-list>

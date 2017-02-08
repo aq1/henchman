@@ -10,8 +10,22 @@ utils.factory('utils', [function () {
         }
     };
 
+    var updateArray = function(array) {
+        return function(event, item) {
+
+            for (var i = array.length - 1; i >= 0; i--) {
+                if (array[i].id === item.id) {
+                    array[i] = item;
+                    return;
+                }
+            }
+            array.unshift(item);
+        };
+    };
+
     return {
-        findInArray: findInArray
+        findInArray: findInArray,
+        updateArray: updateArray
     };
 
 }]);

@@ -1,17 +1,23 @@
 var app = angular.module('treasurerApp');
 
-app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService', 'Model',
-    function($scope, $http, $timeout, AuthorizationService, Model) {
+app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService', 'Model', 'ModelDialog', 'utils',
+    function($scope, $http, $timeout, AuthorizationService, Model, ModelDialog, utils) {
         $scope.showLoginDialog = AuthorizationService.showDialog;
         $scope.logout = AuthorizationService.logout;
         $scope.$on('userIsSet', function(event, user) {
             $scope.user = user;
         });
 
-        $scope.$on('transactionSaved', function(event, transaction) {
-            $scope.Account.get(item.account).then(function(r) {
-                updateArray('accounts')(event, r.data);
+        $scope.modelDialog = ModelDialog;
+
+        $scope.$on('treasurer.Transaction:saved', function(event, transaction) {
+            $scope.Account.get(transaction.account).then(function(r) {
+                utils.updateArray($scope.accounts)(event, r.data);
             });
+        });
+
+        $scope.$on('treasurer.Account:saved', function(event, account) {
+            utils.updateArray($scope.accounts)(event, account);
         });
 
         var init = function() {
