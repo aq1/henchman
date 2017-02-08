@@ -18,5 +18,7 @@ app.controller('ChartCtrl', [
             ChartService.updateData($scope.chart.data[1 + v.row][2]);
         };
 
+        $scope.$on('treasurer.Transaction:saved', function() {ChartService.updateData();});
+
         $scope.getChart();
     }]);

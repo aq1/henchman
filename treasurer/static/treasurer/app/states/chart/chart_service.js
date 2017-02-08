@@ -26,13 +26,6 @@ app.factory('ChartService', ['$http', '$q', 'Model', 'utils', function($http, $q
         return $http.get(url);
     };
 
-    service.updateChart = function() {
-        service.getStatisticsForCategory(service.parentID).then(function(r) {
-            service.chart.options.currentURL = url;
-            service.chart.updateProp('data.content', service.convertResponseToChartData(r));
-        });
-    };
-
     service.updateData = function (categoryId) {
         service.getStatisticsForCategory(categoryId).then(function(r) {
             service.chart.data = service.convertResponseToChartData(r);

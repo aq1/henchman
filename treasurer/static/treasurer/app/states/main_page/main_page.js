@@ -61,7 +61,6 @@ app.controller('MainPageCtrl', [
 
     var transactionSaved = function(event, item) {
         updateArray('transactions')(event, item);
-        ChartService.updateChart();
     };
 
     $scope.$on('treasurer.Account:saved', updateArray('accounts'));
