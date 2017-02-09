@@ -3,6 +3,7 @@ var app = angular.module('treasurerApp');
 app.controller('MainPageCtrl', [
     '$scope',
     '$http',
+    '$timeout',
     'AuthorizationService',
     'ChartService',
     'Model',
@@ -10,6 +11,7 @@ app.controller('MainPageCtrl', [
     'utils',
     function ($scope,
               $http,
+              $timeout,
               AuthorizationService,
               ChartService,
               Model,
@@ -26,13 +28,21 @@ app.controller('MainPageCtrl', [
 
     $scope.modelDialog = ModelDialog;
 
-    var Transaction = new Model({model: 'treasurer.Transaction'});
+    var init = function() {
+        try {
+            $scope.Transaction = new Model({model: 'treasurer.Transaction'});
+        } catch (e) {
+            $timeout(500, init);
+        }
+    };
+
+    init();
 
     $scope.$on('userIsSet', function(event, user) {
         $scope.user = user;
 
         if (user) {
-            Transaction.request('get', 'last').then(function(r) {
+            $scope.Transaction.request('get', 'last').then(function(r) {
                 $scope.transactions = r.data.results;
             });
         } else {
