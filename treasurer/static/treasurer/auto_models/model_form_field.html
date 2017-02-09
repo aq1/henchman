@@ -19,7 +19,10 @@
                    ng-if="field.type === 'DateTimeField'">
     </md-datepicker>
     <div ng-if="field.type.search('ForeignKey') !== -1">
-        <md-select ng-required="field.required" md-on-open="getForeignOptions()" ng-model="item[field.name]" placeholder="{{ field.name | capitalize }}">
+        <md-select ng-required="field.required"
+                   md-on-open="getForeignOptions()"
+                   ng-model="item[field.name]"
+                   placeholder="{{ field.name | capitalize }}">
             <md-option ng-click="openForeignModelDialog($event)" class="dim">
                 New {{ field.name }}...
             </md-option>

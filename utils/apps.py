@@ -13,8 +13,11 @@ class UtilsConfig(AppConfig):
     @staticmethod
     def _model_structure_to_json(model):
         data = {
-            'name': model._meta.label,
             'fields': [],
+            'name': model._meta.label,
+            'relations': list({f.related_model._meta.label
+                               for f in model._meta.related_objects
+                               if f.related_model._meta.label != model._meta.label}),
         }
         for f in model._meta.fields:
             field = {

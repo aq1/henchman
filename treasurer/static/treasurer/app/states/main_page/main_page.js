@@ -32,13 +32,20 @@ app.controller('MainPageCtrl', [
         try {
             $scope.Transaction = new Model({model: 'treasurer.Transaction'});
         } catch (e) {
-            $timeout(500, init);
+            $timeout(100, init);
         }
     };
 
     init();
+    var userIsSet = function(event, user) {
 
-    $scope.$on('userIsSet', function(event, user) {
+        if (!$scope.Transaction) {
+            $timeout(100, function() {
+                userIsSet(event, user);
+            });
+            return;
+        }
+
         $scope.user = user;
 
         if (user) {
@@ -48,7 +55,9 @@ app.controller('MainPageCtrl', [
         } else {
             $scope.transactions = [];
         }
-    });
+    };
+
+    $scope.$on('userIsSet', userIsSet);
 
     var transactionSaved = function(event, item) {
         utils.updateArray($scope.transactions)(event, item);

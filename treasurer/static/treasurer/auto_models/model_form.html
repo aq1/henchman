@@ -1,4 +1,4 @@
-<form name="accountForm">
+<form name="modelForm">
     <md-dialog-content class="md-padding">
         <div layout layout-sm="column">
             <span ng-show="error">{{ error }}</span>
@@ -9,13 +9,16 @@
     </md-dialog-content>
     <md-dialog-actions>
         <div class="md-dialog-actions" layout="row"><span flex></span>
+            <md-button class="md-raised md-warn" ng-click="delete()" ng-show="item.id">
+                {{ ({0: 'Delete', 1: 'Are you sure?'})[deleteButtonClicked] }}
+            </md-button>
             <md-button ng-click="cancelCallback()" ng-show="cancelCallback">
                 Cancel
             </md-button>
             <md-button class="md-primary"
-                       ng-click="save(account)"
+                       ng-click="save()"
                        type="submit"
-                       ng-disabled="accountForm.$invalid">
+                       ng-disabled="modelForm.$invalid">
                 Save
             </md-button>
         </div>

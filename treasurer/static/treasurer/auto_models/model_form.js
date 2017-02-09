@@ -18,6 +18,7 @@ app.directive('modelForm', function() {
             }
 
             $scope.Model = new Model({model: $scope.modelName});
+            $scope.deleteButtonClicked = 0;
 
             if ($scope.itemId) {
                 $scope.Model.get($scope.itemId).then(function(r) {
@@ -37,12 +38,25 @@ app.directive('modelForm', function() {
                 });
             };
 
+            $scope.delete = function() {
+                $scope.deleteButtonClicked = ($scope.deleteButtonClicked + 1) % 2;
+                if ($scope.deleteButtonClicked != 0) {
+                    return;
+                }
+                $scope.Model.delete($scope.item).then(function() {
+                    $rootScope.$broadcast($scope.modelName + ':deleted', r.data);
+                    if ($scope.cancelCallback) {
+                        $scope.cancelCallback();
+                    }
+                    $mdToast.showSimple('Deleted ' + $scope.modelName.split('.')[1]);
+                });
+            };
+
             var init = function() {
                 if (!autoModelsService.getModels().length) {
                     $timeout(init, 100);
                     return;
                 }
-                $scope.model = utils.findInArray(autoModelsService.getModels(), 'name', $scope.modelName);
             };
 
             init();
