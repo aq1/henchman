@@ -5,11 +5,15 @@ app.controller('ChartCtrl', [
     'ChartService',
     function ($scope,
               ChartService) {
-        $scope.getChart = function(categoryId) {
-            ChartService.getChart(categoryId).then(function(chart) {
-                $scope.chart = chart;
-            });
-        };
+        $scope.$on('userIsSet', function(event, user) {
+            if (user) {
+                ChartService.getChart().then(function(chart) {
+                    $scope.chart = chart;
+                });
+            } else {
+                $scope.chart = null;
+            }
+        });
 
         $scope.select = function(v) {
             if (v === undefined) {
@@ -19,6 +23,4 @@ app.controller('ChartCtrl', [
         };
 
         $scope.$on('treasurer.Transaction:saved', function() {ChartService.updateData();});
-
-        $scope.getChart();
     }]);

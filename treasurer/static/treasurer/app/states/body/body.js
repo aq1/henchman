@@ -6,6 +6,7 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
         $scope.logout = AuthorizationService.logout;
         $scope.$on('userIsSet', function(event, user) {
             $scope.user = user;
+            init();
         });
 
         $scope.modelDialog = ModelDialog;
@@ -38,7 +39,5 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
                 $scope.accounts = r.data.results;
             });
         };
-
-        init();
     }
 ]);

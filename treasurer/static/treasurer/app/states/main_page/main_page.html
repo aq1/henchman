@@ -30,7 +30,7 @@
         </md-table-container>
     </div>
     <div layout="column" flex="40" id="treasurer-chart" ng-controller="ChartCtrl">
-        <div google-chart chart="chart" agc-on-select="select(selectedItem)"></div>
+        <div google-chart chart="chart" ng-show="chart" agc-on-select="select(selectedItem)"></div>
     </div>
     <div class="fab-fixed">
         <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"
