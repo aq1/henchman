@@ -41,10 +41,13 @@ app.directive('modelForm', function() {
             $scope.delete = function() {
                 $scope.deleteButtonClicked = ($scope.deleteButtonClicked + 1) % 2;
                 if ($scope.deleteButtonClicked != 0) {
+                    $timeout(function() {
+                        $scope.deleteButtonClicked = 0;
+                    }, 5000);
                     return;
                 }
-                $scope.Model.delete($scope.item).then(function() {
-                    $rootScope.$broadcast($scope.modelName + ':deleted', r.data);
+                $scope.Model.delete($scope.item).then(function(r) {
+                    $rootScope.$broadcast($scope.modelName + ':deleted', $scope.item.id);
                     if ($scope.cancelCallback) {
                         $scope.cancelCallback();
                     }
@@ -57,6 +60,7 @@ app.directive('modelForm', function() {
                     $timeout(init, 100);
                     return;
                 }
+                $scope.model = utils.findInArray(autoModelsService.getModels(), 'name', $scope.modelName);
             };
 
             init();

@@ -2,12 +2,16 @@ var utils = angular.module('utils', []);
 
 utils.factory('utils', [function () {
 
-    var findInArray = function(array, field, value) {
+    var findIndexInArray = function(array, field, value) {
         for (var i = 0; i < array.length; i++) {
             if (array[i][field] === value) {
-                return array[i];
+                return i;
             }
         }
+    };
+
+    var findInArray = function(array, field, value) {
+        return array[findIndexInArray(array, field, value)];
     };
 
     var updateArray = function(array) {
@@ -23,17 +27,22 @@ utils.factory('utils', [function () {
         };
     };
 
-    return {
-        findInArray: findInArray,
-        updateArray: updateArray
+    var removeFromArray = function(array, field, value) {
+        array.splice(findIndexInArray(array, field, value), 1);
     };
 
+    return {
+        findIndexInArray: findIndexInArray,
+        findInArray: findInArray,
+        updateArray: updateArray,
+        removeFromArray: removeFromArray,
+    };
 }]);
 
 
 var capitalizeWord = function(a) {
     return a[0].toUpperCase() + a.slice(1);
-   }
+};
 
 
 utils.filter('capitalize', function() {

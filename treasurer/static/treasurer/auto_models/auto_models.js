@@ -63,13 +63,17 @@ app.factory('Model', ['$http', 'autoModelsService', 'utils', function($http, aut
             }
         };
 
+        model.delete = function(item) {
+            return $http.delete(model.apiUrl + '/' + item.id);
+        };
+
         model.request = function(method, url, data) {
             return $http({
                 method: method,
                 url: model.apiUrl + '/' + url + '?page=1',
                 data: data
             });
-        }
+        };
 
         return model;
     };

@@ -20,6 +20,10 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
             utils.updateArray($scope.accounts)(event, account);
         });
 
+        $scope.$on('treasurer.Account:deleted', function(event, id) {
+            utils.removeFromArray($scope.accounts, 'id', id);
+        });
+
         var init = function() {
             $scope.accounts = [];
             try {
