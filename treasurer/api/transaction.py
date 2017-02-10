@@ -1,4 +1,5 @@
 import datetime
+import calendar
 
 from django.db import models
 
@@ -39,22 +40,25 @@ class TransactionViewSet(BaseModelViewSet):
 
     @list_route(methods=['get'])
     def statistics(self, request):
-        month = request.GET.get('month', datetime.datetime.now().month)
+        date = request.GET.get('date', datetime.datetime.now())
         parent_id = request.GET.get('id')
+
+        date_range = (datetime.datetime(date.year, date.month, 1),
+                      datetime.datetime(date.year, date.month, calendar.monthrange(date.year, date.month)[1]))
 
         if parent_id:
             root_categories = Category.objects.filter(parent_id=parent_id)
         else:
             root_categories = Category.objects.filter(level=0)
 
-        root_categories = root_categories
-
         statistics = []
 
         for category in root_categories:
             total = (category.get_descendants(include_self=True)
-                             .filter(transactions__date__month=month,
-                                     transactions__total__lt=0)
+                             .filter(transactions__date__gte=date_range[0],
+                                     transactions__date__lte=date_range[1],
+                                     transactions__total__lt=0,
+                                     transactions__user=request.user)
                              .aggregate(t=models.Sum('transactions__total'))['t'])
             if not total:
                 continue
