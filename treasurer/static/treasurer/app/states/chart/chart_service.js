@@ -52,7 +52,7 @@ app.factory('ChartService', ['$http', '$q', '$mdToast', 'Model', 'utils',
                             fontSize: 16,
                             legend: {position: 'none'},
                             pieSliceText: 'label',
-                            colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+                            colors: ['#FFE218', '#1F8A70', '#004258', '#FD7400', '#BFDB39'],
                             backgroundColor: 'transparent',
                         }
                     };
