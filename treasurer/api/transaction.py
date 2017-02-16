@@ -27,17 +27,6 @@ class TransactionViewSet(BaseModelViewSet):
     def get_queryset(self):
         return self.request.user.transactions.all()
 
-    @list_route()
-    def last(self, request):
-        transactions = Transaction.objects.filter(account__users=request.user.id)
-        page = self.paginate_queryset(transactions)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(transactions, many=True)
-        return Response(serializer.data)
-
     @list_route(methods=['get'])
     def statistics(self, request):
         date = request.GET.get('date', datetime.datetime.now())

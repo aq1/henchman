@@ -134,12 +134,16 @@ md-dialog model-form {
     color: #02CCBA;
 }
 
-#treasurer-chart {
-}
-
 .align-left {
 	float: left;
 }
+
 .align-right {
 	float: right;
+}
+
+.chart-title {
+    text-align: center;
+    font-size: 15px;
+    line-height: 15px;
 }

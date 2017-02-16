@@ -1,41 +1,51 @@
 <div flex layout="row">
     <div layout="column" flex="60" class="transactions-list" ng-show="transactions.length">
-        <md-table-container>
-          <table md-table multiple ng-model="transactions">
-            <thead md-head>
-              <tr md-row>
-                  <th>Date</th>
-                  <th>Account</th>
-                  <th>Category</th>
-                  <th>Amount</th>
-              </tr>
-            </thead>
-            <tbody md-body>
-              <tr md-row md-select="dessert"
-                  md-select-id="name"
-                  ng-repeat="transaction in transactions"
-                  class="transaction-row"
-                  ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
-                <td md-cell>{{ transaction.date | date : 'dd.MM.yyyy'}}</td>
-                <td md-cell>{{ transaction.account_name }}</td>
-                <td md-cell>{{ transaction.category_name }}</td>
-                <td md-cell>
-                    <span ng-class="{positive: transaction.total > 0}">
-                        {{ transaction.total }}<span>{{ transaction.currency || '&#8381;'}}</span>
-                    </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </md-table-container>
+        <div flex layout="row">
+            <md-table-container>
+              <table md-table multiple ng-model="transactions">
+                <thead md-head>
+                  <tr md-row>
+                      <th>Date</th>
+                      <th>Account</th>
+                      <th>Category</th>
+                      <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody md-body>
+                  <tr md-row md-select="dessert"
+                      md-select-id="name"
+                      ng-repeat="transaction in transactions"
+                      class="transaction-row"
+                      ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
+                    <td md-cell>{{ transaction.date | date : 'dd.MM.yyyy'}}</td>
+                    <td md-cell>{{ transaction.account_name }}</td>
+                    <td md-cell>{{ transaction.category_name }}</td>
+                    <td md-cell>
+                        <span ng-class="{positive: transaction.total > 0}">
+                            {{ transaction.total }}<span>{{ transaction.currency || '&#8381;'}}</span>
+                        </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+        </div>
     </div>
-    <div layout="column" flex="40" id="treasurer-chart" ng-controller="ChartCtrl">
-        <div google-chart chart="chart" ng-show="chart" agc-on-select="select(selectedItem)"></div>
+    <div layout="column" flex="40">
+        <div layout="row" flex>
+            <chart range="month"></chart>
+        </div>
+        <div flex layout="row">
+            <!--<div flex="60" layout="column"></div>-->
+            <div flex layout="column">
+                <chart range="all"></chart>
+            </div>
+        </div>
     </div>
-    <div class="fab-fixed">
-        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"
-                   ng-hide="!accounts.length">
-            <md-icon>add</md-icon>
-        </md-button>
-    </div>
+</div>
+<div class="fab-fixed">
+    <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"
+               ng-hide="!accounts.length">
+        <md-icon>add</md-icon>
+    </md-button>
 </div>

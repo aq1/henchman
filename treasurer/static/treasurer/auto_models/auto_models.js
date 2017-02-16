@@ -68,9 +68,12 @@ app.factory('Model', ['$http', 'autoModelsService', 'utils', function($http, aut
         };
 
         model.request = function(method, url, data) {
+            if (!url.startsWith('http')) {
+                url = model.apiUrl + '/' + url;
+            }
             return $http({
                 method: method,
-                url: model.apiUrl + '/' + url + '?page=1',
+                url: url,
                 data: data
             });
         };

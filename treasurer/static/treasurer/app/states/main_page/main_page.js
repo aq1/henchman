@@ -5,7 +5,6 @@ app.controller('MainPageCtrl', [
     '$http',
     '$timeout',
     'AuthorizationService',
-    'ChartService',
     'Model',
     'ModelDialog',
     'utils',
@@ -13,7 +12,6 @@ app.controller('MainPageCtrl', [
               $http,
               $timeout,
               AuthorizationService,
-              ChartService,
               Model,
               ModelDialog,
               utils) {
@@ -34,6 +32,7 @@ app.controller('MainPageCtrl', [
         } catch (e) {
             $timeout(100, init);
         }
+        $scope.transactions = [];
     };
 
     init();
@@ -49,15 +48,24 @@ app.controller('MainPageCtrl', [
         $scope.user = user;
 
         if (user) {
-            $scope.Transaction.request('get', 'last').then(function(r) {
-                $scope.transactions = r.data.results;
-            });
+            $scope.getTransactions();
         } else {
             $scope.transactions = [];
         }
     };
 
     $scope.$on('userIsSet', userIsSet);
+    $scope.getTransactions = function(url) {
+        if (url) {
+            var request = $scope.Transaction.request('get', url);
+        } else {
+            request = $scope.Transaction.query();
+        }
+        request.then(function(r) {
+            $scope.transactions = $scope.transactions.concat(r.data.results);
+            $scope.transactionsNextURL = r.data.next;
+        });
+    };
 
     var transactionSaved = function(event, item) {
         utils.updateArray($scope.transactions)(event, item);

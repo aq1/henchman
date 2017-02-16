@@ -40,7 +40,7 @@ app.config(['$routeProvider', '$resourceProvider',
 ]);
 
 
-app.run(['autoModelsService', 'ChartService', function(autoModelsService) {
+app.run(['autoModelsService', function(autoModelsService) {
     autoModelsService.init('treasurer');
     autoModelsService.init('authentication');
 }]);
