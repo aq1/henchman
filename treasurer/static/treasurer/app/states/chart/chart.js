@@ -19,8 +19,8 @@ app.directive('chart', function() {
                     var m = date.getMonth();
 
                     $scope.timeRange = {
-                        from: (new Date(y, m, 1)).toISOString(),
-                        to: (new Date(y, m + 1, 0)).toISOString()
+                        from: (new Date(y, m, 1)),
+                        to: (new Date(y, m + 1, 0))
                     };
                 }
 
