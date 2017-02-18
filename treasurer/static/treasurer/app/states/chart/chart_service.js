@@ -56,7 +56,7 @@ app.factory('Chart', ['$http', '$q', '$filter', '$mdToast', 'Model', 'utils',
                                 legend: {position: 'none'},
                                 pieSliceText: 'label',
                                 chartArea: {width: '90%', height: '90%'},
-                                colors: ['#EA4E15', '#1F8A70', '#004258', '#FD7400', '#BFDB39'],
+                                colors: ['#1F8A70', '#004258', '#FD7400', '#BFDB39', '#F7DD2C'],
                                 backgroundColor: 'transparent',
                             }
                         };
