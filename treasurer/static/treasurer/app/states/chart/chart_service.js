@@ -44,26 +44,18 @@ app.factory('Chart', ['$http', '$q', '$filter', '$mdToast', 'Model', 'utils',
             };
 
             chart.getChart = function(categoryId, timeRange) {
-
-                if (timeRange.from && timeRange.to) {
-                    var titleText = ('From: ' + $filter('date')(timeRange.from, 'yyyy.MM.dd') +
-                        ' To: ' + $filter('date')(timeRange.to, 'yyyy.MM.dd'));
-                } else {
-                    titleText = 'All the time';
-                }
-
                 return $q(function(resolve, reject) {
                     chart.getStatisticsForCategory(categoryId, timeRange).then(function(r) {
                         chart.chart = {
                             data: chart.convertResponseToChartData(r),
                             type: 'PieChart',
                             options: {
-                                height: 400,
-                                width: 400,
+                                height: 300,
+                                width: 300,
                                 fontSize: 16,
-                                title: titleText,
                                 legend: {position: 'none'},
                                 pieSliceText: 'label',
+                                chartArea: {width: '90%', height: '90%'},
                                 colors: ['#FFE218', '#1F8A70', '#004258', '#FD7400', '#BFDB39'],
                                 backgroundColor: 'transparent',
                             }

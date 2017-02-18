@@ -30,31 +30,28 @@ app.controller('MainPageCtrl', [
         try {
             $scope.Transaction = new Model({model: 'treasurer.Transaction'});
         } catch (e) {
-            $timeout(100, init);
+            $timeout(init, 100);
         }
         $scope.transactions = [];
     };
-
     init();
-    var userIsSet = function(event, user) {
 
+    var userIsSet = function(user) {
         if (!$scope.Transaction) {
-            $timeout(100, function() {
+            $timeout(function() {
                 userIsSet(event, user);
-            });
+            }, 100);
             return;
         }
 
         $scope.user = user;
 
+        $scope.transactions = [];
         if (user) {
             $scope.getTransactions();
-        } else {
-            $scope.transactions = [];
         }
     };
 
-    $scope.$on('userIsSet', userIsSet);
     $scope.getTransactions = function(url) {
         if (url) {
             var request = $scope.Transaction.request('get', url);
@@ -72,8 +69,5 @@ app.controller('MainPageCtrl', [
     };
 
     $scope.$on('treasurer.Transaction:saved', transactionSaved);
-
-    if (!$scope.user) {
-        AuthorizationService.getUser();
-    }
+    AuthorizationService.getUser().then(userIsSet);
 }]);

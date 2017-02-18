@@ -1,4 +1,4 @@
-<div flex layout="row">
+<div flex layout="row" ng-show="user">
     <div layout="column" flex="60" class="transactions-list" ng-show="transactions.length">
         <div flex layout="row">
             <md-table-container>
@@ -32,15 +32,14 @@
         </div>
     </div>
     <div layout="column" flex="40">
-        <div layout="row" flex>
+        <md-tabs md-border-bottom md-dynamic-height>
+          <md-tab label="Month">
             <chart range="month"></chart>
-        </div>
-        <div flex layout="row">
-            <!--<div flex="60" layout="column"></div>-->
-            <div flex layout="column">
-                <chart range="all"></chart>
-            </div>
-        </div>
+          </md-tab>
+          <md-tab label="All">
+            <chart range="all"></chart>
+          </md-tab>
+        </md-tabs>
     </div>
 </div>
 <div class="fab-fixed">
