@@ -43,15 +43,15 @@ class TransactionViewSet(BaseModelViewSet):
         statistics = []
 
         for category in root_categories:
-            total = (category.get_descendants(include_self=True)
-                             .filter(transactions__total__lt=0,
-                                     transactions__user=request.user))
-
+            total = (Transaction.objects.filter(category_id__in=category.get_descendants(include_self=True)
+                                                                        .values_list('id', flat=True),
+                                                total__lt=0,
+                                                user=request.user))
             if date_range:
-                total = total.filter(transactions__date__gte=date_range[0],
-                                     transactions__date__lte=date_range[1])
+                total = total.filter(date__gte=date_range[0],
+                                     date__lte=date_range[1])
 
-            total = total.aggregate(t=models.Sum('transactions__total'))['t']
+            total = total.aggregate(t=models.Sum('total'))['t']
             if not total:
                 continue
             statistics.append({'id': category.id, 'name': category.name, 'total': total})
