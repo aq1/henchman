@@ -147,3 +147,11 @@ md-dialog model-form {
 .transactions-btn {
     margin-top: 20px;
 }
+
+div.google-visualization-tooltip {
+    pointer-events: none
+}
+
+svg > g > g:last-child {
+    pointer-events: none
+}
