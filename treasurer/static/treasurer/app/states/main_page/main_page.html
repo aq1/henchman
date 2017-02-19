@@ -30,6 +30,14 @@
               </table>
             </md-table-container>
         </div>
+        <div flex layout="row">
+            <md-button class="md-primary transactions-btn"
+                       ng-show="transactionsNextURL"
+                       ng-click="getTransactions(transactionsNextURL)"
+                       target="_blank">
+                Previous transactions
+            </md-button>
+        </div>
     </div>
     <div layout="column" flex="40">
         <md-tabs md-border-bottom md-dynamic-height>

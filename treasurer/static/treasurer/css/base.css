@@ -65,10 +65,6 @@ md-list-item > button {
     height: 110px;
 }
 
-.transactions-list {
-    margin-top: 20px;
-}
-
 .transaction-row {
     cursor: pointer;
 }
@@ -146,4 +142,8 @@ md-dialog model-form {
     text-align: center;
     font-size: 15px;
     line-height: 15px;
+}
+
+.transactions-btn {
+    margin-top: 20px;
 }
