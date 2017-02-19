@@ -39,7 +39,7 @@ app.controller('MainPageCtrl', [
     var userIsSet = function(user) {
         if (!$scope.Transaction) {
             $timeout(function() {
-                userIsSet(event, user);
+                userIsSet(user);
             }, 100);
             return;
         }
