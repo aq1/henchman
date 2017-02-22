@@ -20,10 +20,10 @@ app.factory('Chart', ['$http', '$q', '$filter', '$mdToast', 'Model', 'utils',
                 return data;
             };
 
-            chart.getStatisticsForCategory = function(id, timeRange) {
-                chart.parentID = id;
+            chart.getStatisticsForCategory = function(_id, timeRange) {
+                chart.parentID = _id;
                 var data = {
-                    'id': id,
+                    id: _id,
                     from: timeRange.from,
                     to: timeRange.to
                 };

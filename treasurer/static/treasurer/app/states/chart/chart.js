@@ -37,7 +37,12 @@ app.directive('chart', function() {
                     Chart.updateData($scope.chart.data[1 + v.row][2], $scope.timeRange);
                 };
 
-                $scope.$on('treasurer.Transaction:saved', function() {Chart.updateData();});
+                $scope.$on('treasurer.Transaction:saved', function() {
+                        if (!$scope.timeRange) {
+                            return;
+                        }
+                        Chart.updateData(null, $scope.timeRange);
+                    });
 
                 AuthorizationService.getUser().then(function(user) {
                     if (user) {
