@@ -37,16 +37,16 @@ app.controller('MainPageCtrl', [
     init();
 
     var userIsSet = function(user) {
-
-        $scope.user = user;
         if (!user) {
             $scope.transactions = [];
+            delete $scope.user;
         }
 
         if ($scope.user) {
             return;
         }
 
+        $scope.user = user;
         if (!$scope.Transaction) {
             $timeout(function() {
                 userIsSet(user);
