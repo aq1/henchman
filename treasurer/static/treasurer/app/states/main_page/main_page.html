@@ -1,4 +1,5 @@
-<div flex layout="row" ng-show="user">
+<div ng-show="user">
+<div flex layout="row">
     <div layout="column" flex="60" class="transactions-list" ng-show="transactions.length">
         <div flex layout="row">
             <md-table-container>
@@ -12,8 +13,7 @@
                   </tr>
                 </thead>
                 <tbody md-body>
-                  <tr md-row md-select="dessert"
-                      md-select-id="name"
+                  <tr md-row
                       ng-repeat="transaction in transactions"
                       class="transaction-row"
                       ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
@@ -30,9 +30,8 @@
               </table>
             </md-table-container>
         </div>
-        <div flex layout="row">
+        <div flex layout="row" ng-show="transactionsNextURL">
             <md-button class="md-primary transactions-btn"
-                       ng-show="transactionsNextURL"
                        ng-click="getTransactions(transactionsNextURL)"
                        target="_blank">
                 Previous transactions
@@ -55,4 +54,5 @@
                ng-hide="!accounts.length">
         <md-icon>add</md-icon>
     </md-button>
+</div>
 </div>

@@ -37,14 +37,22 @@ app.controller('MainPageCtrl', [
     init();
 
     var userIsSet = function(user) {
+
+        $scope.user = user;
+        if (!user) {
+            $scope.transactions = [];
+        }
+
+        if ($scope.user) {
+            return;
+        }
+
         if (!$scope.Transaction) {
             $timeout(function() {
                 userIsSet(user);
             }, 100);
             return;
         }
-
-        $scope.user = user;
 
         $scope.transactions = [];
         if (user) {
@@ -69,5 +77,6 @@ app.controller('MainPageCtrl', [
     };
 
     $scope.$on('treasurer.Transaction:saved', transactionSaved);
-    AuthorizationService.getUser().then(userIsSet);
+    $scope.$on('userIsSet', function(e, user) {userIsSet(user)});
+    AuthorizationService.getUser().then(userIsSet, function() {});
 }]);

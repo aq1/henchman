@@ -37,6 +37,16 @@ app.directive('chart', function() {
                     Chart.updateData($scope.chart.data[1 + v.row][2], $scope.timeRange);
                 };
 
+                $scope.$on('userIsSet', function(e, user) {
+                    if (!user) {
+                        delete $scope.chart;
+                        return;
+                    } else if ($scope.chart) {
+                        return;
+                    } else {
+                        init();
+                    }
+                });
                 $scope.$on('treasurer.Transaction:saved', function() {
                         if (!$scope.timeRange) {
                             return;
@@ -48,7 +58,7 @@ app.directive('chart', function() {
                     if (user) {
                         init();
                     }
-                });
+                }, function() {});
         }]
     };
 });

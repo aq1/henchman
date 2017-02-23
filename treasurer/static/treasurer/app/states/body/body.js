@@ -6,6 +6,10 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
         $scope.logout = AuthorizationService.logout;
         $scope.$on('userIsSet', function(event, user) {
             $scope.user = user;
+            $scope.accounts = [];
+            if (!user) {
+                return;
+            }
             init();
         });
 
@@ -26,7 +30,6 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
         });
 
         var init = function() {
-            $scope.accounts = [];
             try {
                 $scope.Account = new Model({
                     model: 'treasurer.Account'
