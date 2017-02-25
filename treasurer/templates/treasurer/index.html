@@ -40,7 +40,7 @@
                 <md-list-item ng-repeat="account in accounts">
                     <md-button ng-click="modelDialog.show($event, {model: 'treasurer.Account'}, account.id)">
                         <span class="align-left">{{ account.name }}</span>
-                        <span class="align-right" ng-class="{negative: account.total < 0}">
+                        <span class="align-right" ng-class="{negative: account.total < account.limit}">
                             {{ account.total | number : 2 }}<span>{{ account.currency || '&#8381;'}}</span>
                         </span>
                     </md-button>
