@@ -60,15 +60,6 @@ md-list-item > button {
     text-transform: none;
 }
 
-.account-card {
-    cursor: pointer;
-    margin-top: -30px;
-    display: inline-block;
-    width: 200px;
-    overflow: hidden;
-    height: 110px;
-}
-
 .transaction-row {
     cursor: pointer;
 }

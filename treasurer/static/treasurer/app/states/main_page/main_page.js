@@ -20,7 +20,12 @@ app.controller('MainPageCtrl', [
 
     $scope.user = null;
     $scope.transactions = [];
+    $scope.tableColumns = ['date', 'account', 'category', 'amount', 'comment'];
+    $scope.tableColumnsVisibility = utils.getJSONFromLocalStorage('tableColumnsVisibility', [true, true, true, true, false]);
 
+    $scope.$watch('tableColumnsVisibility', function(newValue, oldValue) {
+        window.localStorage['tableColumnsVisibility'] = JSON.stringify(newValue);
+    }, true);
     $scope.showLoginDialog = AuthorizationService.showDialog;
     $scope.logout = AuthorizationService.logout;
 

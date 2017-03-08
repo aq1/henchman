@@ -31,11 +31,16 @@ utils.factory('utils', [function () {
         array.splice(findIndexInArray(array, field, value), 1);
     };
 
+    var getJSONFromLocalStorage = function(key, defaultValue) {
+        return JSON.parse(window.localStorage[key] || null) || defaultValue;
+    };
+
     return {
         findIndexInArray: findIndexInArray,
         findInArray: findInArray,
         updateArray: updateArray,
         removeFromArray: removeFromArray,
+        getJSONFromLocalStorage: getJSONFromLocalStorage,
     };
 }]);
 

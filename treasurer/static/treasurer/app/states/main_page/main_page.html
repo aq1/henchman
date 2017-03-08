@@ -6,24 +6,42 @@
               <table md-table multiple ng-model="transactions">
                 <thead md-head>
                   <tr md-row>
-                      <th>Date</th>
-                      <th>Account</th>
-                      <th>Category</th>
-                      <th>Amount</th>
+                      <th ng-repeat="label in tableColumns"
+                          ng-show="tableColumnsVisibility[$index]">{{ label | capitalize }}</th>
+                      <th>
+                          <md-menu>
+                              <md-button aria-label="Open phone interactions menu" class="md-icon-button"
+                                         ng-click="$mdMenu.open($event)">
+                                  <md-icon md-menu-origin>menu</md-icon>
+                              </md-button>
+                              <md-menu-content width="2">
+                                  <md-menu-item ng-repeat="label in tableColumns">
+                                      <md-button ng-click="tableColumnsVisibility[$index] = !tableColumnsVisibility[$index]">
+                                          <md-checkbox ng-model="tableColumnsVisibility[$index]">
+                                              {{ label | capitalize }}
+                                          </md-checkbox>
+                                      </md-button>
+                                  </md-menu-item>
+                              </md-menu-content>
+                          </md-menu>
+                      </th>
                   </tr>
                 </thead>
-                <tbody md-body>
+                  <tbody md-body>
                   <tr md-row
                       ng-repeat="transaction in transactions"
                       class="transaction-row"
                       ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
-                    <td md-cell>{{ transaction.date | date : 'dd.MM.yyyy'}}</td>
-                    <td md-cell>{{ transaction.account_name }}</td>
-                    <td md-cell>{{ transaction.category_name }}</td>
-                    <td md-cell>
+                    <td md-cell ng-show="tableColumnsVisibility[0]">{{ transaction.date | date : 'dd.MM.yyyy'}}</td>
+                    <td md-cell ng-show="tableColumnsVisibility[1]">{{ transaction.account_name }}</td>
+                    <td md-cell ng-show="tableColumnsVisibility[2]">{{ transaction.category_name }}</td>
+                    <td md-cell ng-show="tableColumnsVisibility[3]">
                         <span ng-class="{positive: transaction.total > 0}">
                             {{ transaction.total }}<span>{{ transaction.currency || '&#8381;'}}</span>
                         </span>
+                    </td>
+                    <td md-cell ng-show="tableColumnsVisibility[4]">
+                        {{ transaction.comment }}
                     </td>
                   </tr>
                 </tbody>
