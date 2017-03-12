@@ -1,7 +1,7 @@
 <div ng-show="user">
 <div flex layout="row">
     <div layout="column" flex="60" class="transactions-list" ng-show="transactions.length">
-        <div flex="90" layout="row">
+        <div flex="99" layout="row">
             <md-table-container>
               <table md-table multiple ng-model="transactions">
                 <thead md-head>
@@ -48,7 +48,7 @@
               </table>
             </md-table-container>
         </div>
-        <div flex="10" layout="row" ng-show="transactionsNextURL">
+        <div flex="1" layout="row" ng-show="transactionsNextURL">
             <md-button class="md-primary transactions-btn"
                        ng-click="getTransactions(transactionsNextURL)"
                        target="_blank">
