@@ -43,6 +43,11 @@
                         <span class="align-right" ng-class="{negative: account.total < account.limit}">
                             {{ account.total | number : 2 }}<span>{{ account.currency || '&#8381;'}}</span>
                         </span>
+                        <md-tooltip md-direction="right"
+                                    md-delay="300"
+                                    ng-show="account.total < account.limit">
+                            {{ account.total - account.limit | number : 2}}
+                        </md-tooltip>
                     </md-button>
                 </md-list-item>
                 <md-list-item>
