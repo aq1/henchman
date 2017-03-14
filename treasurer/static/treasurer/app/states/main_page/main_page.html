@@ -1,76 +1,91 @@
 <div ng-show="user">
-<div flex layout="row">
-    <div layout="column" flex="60" class="transactions-list" ng-show="transactions.length">
-        <div flex="99" layout="row">
-            <md-table-container>
-              <table md-table multiple ng-model="transactions">
-                <thead md-head>
-                  <tr md-row>
-                      <th ng-repeat="label in tableColumns"
-                          ng-show="tableColumnsVisibility[$index]">{{ label | capitalize }}</th>
-                      <th>
-                          <md-menu>
-                              <md-button aria-label="Open phone interactions menu" class="md-icon-button"
-                                         ng-click="$mdMenu.open($event)">
-                                  <md-icon md-menu-origin>menu</md-icon>
-                              </md-button>
-                              <md-menu-content width="2">
-                                  <md-menu-item ng-repeat="label in tableColumns">
-                                      <md-button ng-click="tableColumnsVisibility[$index] = !tableColumnsVisibility[$index]">
-                                          <md-checkbox ng-model="tableColumnsVisibility[$index]">
-                                              {{ label | capitalize }}
-                                          </md-checkbox>
-                                      </md-button>
-                                  </md-menu-item>
-                              </md-menu-content>
-                          </md-menu>
-                      </th>
-                  </tr>
-                </thead>
-                  <tbody md-body>
-                  <tr md-row
-                      ng-repeat="transaction in transactions"
-                      class="transaction-row"
-                      ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
-                    <td md-cell ng-show="tableColumnsVisibility[0]">{{ transaction.date | date : 'dd.MM.yyyy'}}</td>
-                    <td md-cell ng-show="tableColumnsVisibility[1]">{{ transaction.account_name }}</td>
-                    <td md-cell ng-show="tableColumnsVisibility[2]">{{ transaction.category_name }}</td>
-                    <td md-cell ng-show="tableColumnsVisibility[3]">
-                        <span ng-class="{positive: transaction.total > 0}">
-                            {{ transaction.total }}<span>{{ transaction.currency || '&#8381;'}}</span>
-                        </span>
-                    </td>
-                    <td md-cell ng-show="tableColumnsVisibility[4]">
-                        {{ transaction.comment }}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </md-table-container>
-        </div>
-        <div flex="1" layout="row" ng-show="transactionsNextURL">
-            <md-button class="md-primary transactions-btn"
-                       ng-click="getTransactions(transactionsNextURL)"
-                       target="_blank">
-                Previous transactions
-            </md-button>
-        </div>
-    </div>
-    <div layout="column" flex="40">
-        <md-tabs md-border-bottom md-dynamic-height>
-          <md-tab label="Month">
-            <chart range="month"></chart>
-          </md-tab>
-          <md-tab label="All">
-            <chart range="all"></chart>
-          </md-tab>
-        </md-tabs>
-    </div>
+   <md-tabs md-dynamic-height>
+      <md-tab label="Summary">
+         <div flex layout="row">
+            <div layout="column" flex="60" class="transactions-list" ng-show="transactions.length">
+               <div flex="99" layout="row">
+                  <md-table-container>
+                     <table md-table multiple ng-model="transactions">
+                        <thead md-head>
+                           <tr md-row>
+                              <th ng-repeat="label in tableColumns"
+                                 ng-show="tableColumnsVisibility[$index]">{{ label | capitalize }}
+                              </th>
+                              <th>
+                                 <md-menu>
+                                    <md-button aria-label="Open phone interactions menu" class="md-icon-button"
+                                       ng-click="$mdMenu.open($event)">
+                                       <md-icon md-menu-origin>menu</md-icon>
+                                    </md-button>
+                                    <md-menu-content width="2">
+                                       <md-menu-item ng-repeat="label in tableColumns">
+                                          <md-button
+                                             ng-click="tableColumnsVisibility[$index] = !tableColumnsVisibility[$index]">
+                                             <md-checkbox ng-model="tableColumnsVisibility[$index]">
+                                                {{ label | capitalize }}
+                                             </md-checkbox>
+                                          </md-button>
+                                       </md-menu-item>
+                                    </md-menu-content>
+                                 </md-menu>
+                              </th>
+                           </tr>
+                        </thead>
+                        <tbody md-body>
+                           <tr md-row
+                              ng-repeat="transaction in transactions"
+                              class="transaction-row"
+                              ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'}, transaction.id)">
+                              <td md-cell ng-show="tableColumnsVisibility[0]">{{ transaction.date | date :
+                                 'dd.MM.yyyy'}}
+                              </td>
+                              <td md-cell ng-show="tableColumnsVisibility[1]">{{ transaction.account_name }}</td>
+                              <td md-cell ng-show="tableColumnsVisibility[2]">{{ transaction.category_name }}</td>
+                              <td md-cell ng-show="tableColumnsVisibility[3]">
+                                 <span ng-class="{positive: transaction.total > 0}">
+                                 {{ transaction.total }}<span>{{ transaction.currency || '&#8381;'}}</span>
+                                 </span>
+                              </td>
+                              <td md-cell ng-show="tableColumnsVisibility[4]">
+                                 {{ transaction.comment }}
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </md-table-container>
+               </div>
+               <div flex="1" layout="row" ng-show="transactionsNextURL">
+                  <md-button class="md-primary transactions-btn"
+                     ng-click="getTransactions(transactionsNextURL)"
+                     target="_blank">
+                     Previous transactions
+                  </md-button>
+               </div>
+            </div>
+            <div layout="column" flex="40">
+               <md-tabs md-border-bottom md-dynamic-height>
+                  <md-tab label="Month">
+                     <chart range="month"></chart>
+                  </md-tab>
+                  <md-tab label="All">
+                     <chart range="all"></chart>
+                  </md-tab>
+               </md-tabs>
+            </div>
+         </div>
+      </md-tab>
+      <md-tab label="Charts">
+         <div>
+            COMING SOON
+         </div>
+      </md-tab>
+   </md-tabs>
+   <div class="fab-fixed">
+      <md-button class="md-fab md-fab-bottom-right" aria-label="Add"
+         ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"
+         ng-hide="!accounts.length">
+         <md-icon>add</md-icon>
+      </md-button>
+   </div>
 </div>
-<div class="fab-fixed">
-    <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"
-               ng-hide="!accounts.length">
-        <md-icon>add</md-icon>
-    </md-button>
-</div>
-</div>
+
