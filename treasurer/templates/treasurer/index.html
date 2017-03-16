@@ -36,8 +36,9 @@
             <md-list>
                 <md-subheader class="md-no-sticky">
                     <span>Accounts</span>
-                    <span>({{ accounts | sum : 'total' | number : 2 }})</span>
-                    <span ng-class="{negative: totalDebt < 0}">({{ totalDebt | number : 2 }})</span>
+                    <span>({{ accounts | filter : positiveBalance | sum : 'total' | number : 2 }}, </span>
+                    <span ng-class="{negative: totalDebt < 0}">{{ totalDebt | number : 2 }}</span>
+                    )
                 </md-subheader>
                 <md-list-item ng-repeat="account in accounts">
                     <md-button ng-click="modelDialog.show($event, {model: 'treasurer.Account'}, account.id)">

@@ -31,6 +31,10 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
             utils.removeFromArray($scope.accounts, 'id', id);
         });
 
+        $scope.positiveBalance = function(acc) {
+            return (acc.total >= acc.limit);
+        };
+
         var init = function() {
             try {
                 $scope.Account = new Model({
