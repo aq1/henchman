@@ -63,3 +63,17 @@ utils.filter('capitalize', function() {
         return input.split(' ').map(capitalizeWord).join(' ')
     };
 });
+
+utils.filter('sum', function () {
+    return function(input, field) {
+        var sum = 0;
+        if (!input) {
+            return 0;
+        }
+
+        angular.forEach(input, function(item) {
+            sum += item[field];
+        });
+        return sum;
+    }
+});

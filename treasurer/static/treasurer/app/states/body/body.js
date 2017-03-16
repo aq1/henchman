@@ -4,6 +4,8 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
     function($scope, $http, $timeout, AuthorizationService, Model, ModelDialog, utils) {
         $scope.showLoginDialog = AuthorizationService.showDialog;
         $scope.logout = AuthorizationService.logout;
+        $scope.totalDebt = 0;
+
         $scope.$on('userIsSet', function(event, user) {
             $scope.user = user;
             $scope.accounts = [];
@@ -40,6 +42,14 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
             }
             $scope.Account.query().then(function(r) {
                 $scope.accounts = r.data.results;
+                $scope.totalDebt = 0;
+                angular.forEach($scope.accounts, function(acc) {
+                    var diff = acc.total - acc.limit;
+                    if (diff >= 0) {
+                        return;
+                    }
+                    $scope.totalDebt += diff;
+                });
             });
         };
     }
