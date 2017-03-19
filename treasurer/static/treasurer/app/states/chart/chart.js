@@ -34,6 +34,7 @@ app.directive('chart', function() {
                     if (v === undefined) {
                         return;
                     }
+                    debugger;
                     Chart.updateData($scope.chart.data[1 + v.row][2], $scope.timeRange);
                 };
 
