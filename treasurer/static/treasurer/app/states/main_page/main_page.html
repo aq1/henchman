@@ -1,4 +1,4 @@
-<div ng-show="user">
+<div ng-show="user && transactions.length">
    <md-tabs md-dynamic-height>
       <md-tab label="Summary">
          <div flex layout="row">
@@ -73,12 +73,11 @@
          </div>
       </md-tab>
    </md-tabs>
-   <div class="fab-fixed">
-      <md-button class="md-fab md-fab-bottom-right" aria-label="Add"
-         ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"
-         ng-hide="!accounts.length">
-         <md-icon>add</md-icon>
-      </md-button>
-   </div>
 </div>
-
+<div class="fab-fixed" ng-show="accounts">
+   <md-button class="md-fab md-fab-bottom-right" aria-label="Add"
+      ng-click="modelDialog.show($event, {model: 'treasurer.Transaction'})"
+      ng-hide="!accounts.length">
+      <md-icon>add</md-icon>
+   </md-button>
+</div>

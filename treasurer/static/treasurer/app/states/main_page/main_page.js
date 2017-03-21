@@ -82,6 +82,13 @@ app.controller('MainPageCtrl', [
     };
 
     $scope.$on('treasurer.Transaction:saved', transactionSaved);
+    $scope.$on('treasurer.Transaction:deleted', function(event, item) {
+        utils.removeFromArray($scope.transactions, 'id', item.id);
+    });
+    $scope.$on('treasurer.Account:deleted', function() {
+        $scope.transactions = [];
+        $scope.getTransactions();
+    });
     $scope.$on('userIsSet', function(e, user) {userIsSet(user)});
     AuthorizationService.getUser().then(userIsSet, function() {});
 }]);

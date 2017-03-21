@@ -17,11 +17,13 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
 
         $scope.modelDialog = ModelDialog;
 
-        $scope.$on('treasurer.Transaction:saved', function(event, transaction) {
+        var updateAccount = function(event, transaction) {
             $scope.Account.get(transaction.account).then(function(r) {
                 utils.updateArray($scope.accounts)(event, r.data);
             });
-        });
+        };
+        $scope.$on('treasurer.Transaction:saved', updateAccount);
+        $scope.$on('treasurer.Transaction:deleted', updateAccount);
 
         $scope.$on('treasurer.Account:saved', function(event, account) {
             utils.updateArray($scope.accounts)(event, account);

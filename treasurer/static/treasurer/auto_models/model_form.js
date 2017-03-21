@@ -47,7 +47,7 @@ app.directive('modelForm', function() {
                     return;
                 }
                 $scope.Model.delete($scope.item).then(function(r) {
-                    $rootScope.$broadcast($scope.modelName + ':deleted', $scope.item.id);
+                    $rootScope.$broadcast($scope.modelName + ':deleted', $scope.item);
                     if ($scope.cancelCallback) {
                         $scope.cancelCallback();
                     }
