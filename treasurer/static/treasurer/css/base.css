@@ -151,5 +151,5 @@ svg > g > g:last-child {
 
 div#summary-chart > div, div#summary-chart > div > div {
     width: 50%;
-    margin: 0 auto;
+    margin-left: 25px;
 }

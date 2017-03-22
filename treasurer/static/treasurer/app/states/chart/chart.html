@@ -1,7 +1,7 @@
 <div id="summary-chart">
     <div>
-        <md-button title="Previous Category" ng-click="">
-            <md-icon>arrow_up</md-icon>
+        <md-button title="Refresh Chart" ng-click="select(null)">
+            <md-icon>refresh</md-icon>
         </md-button>
     </div>
     <div google-chart ng-show="chart" chart="chart" agc-on-select="select(selectedItem)"></div></div>

@@ -33,9 +33,12 @@ app.directive('chart', function() {
                 $scope.select = function(v) {
                     if (v === undefined) {
                         return;
+                    } else if (v === null) {
+                        category = v;
+                    } else {
+                        category = $scope.chart.data[1 + v.row][2]
                     }
-                    debugger;
-                    Chart.updateData($scope.chart.data[1 + v.row][2], $scope.timeRange);
+                    Chart.updateData(category, $scope.timeRange);
                 };
 
                 $scope.$on('userIsSet', function(e, user) {
