@@ -14,5 +14,8 @@ class CategoryViewSet(BaseModelViewSet):
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
     def get_queryset(self):
-        return Category.objects.all()
+        return self.request.user.categories.all()

@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.signals import pre_save, post_delete
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.conf import settings
 
@@ -26,15 +26,15 @@ def recalculate_total(account_id, diff):
     acc.save()
 
 
-@receiver(pre_save, sender=Transaction)
-def transaction_pre_save(**kwargs):
-    diff = float(kwargs['instance'].total)
-    if kwargs['instance'].id:
-        diff -= Transaction.objects.get(id=kwargs['instance'].id).total
+@receiver(post_save, sender=Transaction)
+def transaction_post_save(instance, created, **kwargs):
+    diff = float(instance.total)
+    if not created:
+        diff -= Transaction.objects.get(id=instance.id).total
 
-    recalculate_total(kwargs['instance'].account_id, diff)
+    recalculate_total(instance.account_id, diff)
 
 
 @receiver(post_delete, sender=Transaction)
-def transaction_post_delete(**kwargs):
-    recalculate_total(kwargs['instance'].account_id, -kwargs['instance'].total)
+def transaction_post_delete(instance, **kwargs):
+    recalculate_total(instance.account_id, -instance.total)

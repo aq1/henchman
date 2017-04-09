@@ -1,6 +1,3 @@
-import datetime
-import calendar
-
 from django.db import models
 
 from rest_framework.permissions import IsAuthenticated
@@ -31,14 +28,17 @@ class TransactionViewSet(BaseModelViewSet):
     def statistics(self, request):
         parent_id = request.GET.get('id')
 
+        if parent_id and not Category.objects.filter(id=parent_id, user=request.user).exists():
+            return Response(status=403)
+
         date_range = None
         if request.GET.get('from') and request.GET.get('to'):
             date_range = request.GET['from'], request.GET['to']
 
         if parent_id:
-            root_categories = Category.objects.filter(parent_id=parent_id)
+            root_categories = Category.objects.filter(parent_id=parent_id, user=request.user)
         else:
-            root_categories = Category.objects.filter(level=0)
+            root_categories = Category.objects.filter(level=0, user=request.user)
 
         statistics = []
 
