@@ -1,4 +1,6 @@
+import calendar
 from django.db import models
+from django.utils import timezone
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -24,6 +26,25 @@ class TransactionViewSet(BaseModelViewSet):
     def get_queryset(self):
         return self.request.user.transactions.all()
 
+    def _get_stats(self, user, categories, date_range=None):
+        statistics = []
+
+        for category in categories:
+            total = (Transaction.objects.filter(category_id__in=category.get_descendants(include_self=True)
+                                                                        .values_list('id', flat=True),
+                                                total__lt=0,
+                                                user=user))
+            if date_range:
+                total = total.filter(date__gte=date_range[0],
+                                     date__lte=date_range[1])
+
+            total = total.aggregate(t=models.Sum('total'))['t']
+            if not total:
+                continue
+            statistics.append({'id': category.id, 'name': category.name, 'total': total})
+
+        return statistics
+
     @list_route(methods=['get'])
     def statistics(self, request):
         parent_id = request.GET.get('id')
@@ -36,24 +57,16 @@ class TransactionViewSet(BaseModelViewSet):
             date_range = request.GET['from'], request.GET['to']
 
         if parent_id:
-            root_categories = Category.objects.filter(parent_id=parent_id, user=request.user)
+            categories = Category.objects.filter(parent_id=parent_id, user=request.user)
         else:
-            root_categories = Category.objects.filter(level=0, user=request.user)
+            categories = Category.objects.filter(level=0, user=request.user)
 
-        statistics = []
+        return Response(self._get_stats(request.user, categories, date_range))
 
-        for category in root_categories:
-            total = (Transaction.objects.filter(category_id__in=category.get_descendants(include_self=True)
-                                                                        .values_list('id', flat=True),
-                                                total__lt=0,
-                                                user=request.user))
-            if date_range:
-                total = total.filter(date__gte=date_range[0],
-                                     date__lte=date_range[1])
-
-            total = total.aggregate(t=models.Sum('total'))['t']
-            if not total:
-                continue
-            statistics.append({'id': category.id, 'name': category.name, 'total': total})
-
-        return Response(statistics)
+    @list_route(methods=['get'])
+    def monthstats(self, request):
+        categories = Category.objects.filter(level=0, user=request.user)
+        year, month = int(request.GET.get('year')), int(request.GET.get('month'))
+        date_from = timezone.datetime(year, month, 1)
+        date_to = (date_from + timezone.timedelta(days=calendar.monthrange(year, month)[1]))
+        return Response(self._get_stats(request.user, categories, (date_from, date_to)))

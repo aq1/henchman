@@ -8,7 +8,7 @@ app.directive('chart', function() {
         scope: {
             range: '@'
         },
-        controller: [ '$scope', 'AuthorizationService', 'Chart',
+        controller: ['$scope', 'AuthorizationService', 'Chart',
             function ($scope, AuthorizationService, Chart) {
                 var Chart = new Chart();
                 $scope.timeRange = {};

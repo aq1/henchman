@@ -1,0 +1,14 @@
+<div flex layout="row">
+    <div flex layout="row">
+        <div flex="50" layout="column">
+            <div flex layout="row" ng-repeat="month in months" ng-if="$even">
+                <month-chart index="$index" month="month"></month-chart>
+            </div>
+        </div>
+        <div flex="50" layout="column">
+            <div flex layout="row" ng-repeat="month in months" ng-if="$odd">
+                <month-chart index="$index" month="month"></month-chart>
+            </div>
+        </div>
+    </div>
+</div>

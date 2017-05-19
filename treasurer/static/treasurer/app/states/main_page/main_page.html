@@ -13,7 +13,7 @@
                               </th>
                               <th>
                                  <md-menu>
-                                    <md-button aria-label="Open phone interactions menu" class="md-icon-button"
+                                    <md-button class="md-icon-button"
                                        ng-click="$mdMenu.open($event)">
                                        <md-icon md-menu-origin>menu</md-icon>
                                     </md-button>
@@ -68,10 +68,11 @@
          </div>
       </md-tab>
       <md-tab label="Charts">
-         <div>
-            COMING SOON
-         </div>
+         <charts-tab></charts-tab>
       </md-tab>
+      <!--<md-tab label="Settings">-->
+         <!--<settings></settings>-->
+      <!--</md-tab>-->
    </md-tabs>
 </div>
 <div class="fab-fixed" ng-show="accounts">

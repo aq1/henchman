@@ -1,0 +1,20 @@
+<div flex layout="row">
+    <div flex="20" layout="column">
+        <md-list flex>
+            <md-list-item class="md-1-line"
+                          ng-repeat="label in labels"
+                          ng-click="index=$index"
+                          ng-class="{'selected-item': ''}">
+                {{ label }}
+            </md-list-item>
+        </md-list>
+    </div>
+    <div flex="80" layout="column">
+        <div ng-show="index == 0">
+            Categories!!
+        </div>
+        <div ng-show="index == 1">
+            Hidden forever
+        </div>
+    </div>
+</div>

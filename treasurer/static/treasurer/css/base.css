@@ -153,3 +153,16 @@ div#summary-chart > div, div#summary-chart > div > div {
     width: 50%;
     margin-left: 25px;
 }
+
+month-chart, md-card.month-chart-card {
+    width: 95%;
+    height: 300px;
+}
+
+month-chart {
+    margin-bottom: 10px;
+}
+
+md-card.month-chart-card md-card-content {
+    padding-top: 0;
+}
