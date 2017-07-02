@@ -1,0 +1,10 @@
+<md-dialog aria-label="account-dialog" class="model-dialog" flex="40">
+   <md-tabs md-dynamic-height>
+       <md-tab label="Transaction">
+            <model-form config="transactionConfig" item-id="itemId" cancel-callback="hide()"></model-form>
+       </md-tab>
+       <md-tab label="Transfer">
+            <model-form config="transferConfig" item-id="itemId" cancel-callback="hide()"></model-form>
+       </md-tab>
+   </md-tabs>
+</md-dialog>

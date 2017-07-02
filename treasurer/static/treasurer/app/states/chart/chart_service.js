@@ -10,11 +10,12 @@ app.factory('Chart', ['$http', '$q', '$filter', '$mdToast', 'Model', 'utils',
             var chart = this;
 
             chart.statisticsURL = '/treasurer/api/v1/transaction/statistics';
+            chart.total = null;
             chart.parentID = null;
 
             chart.convertResponseToChartData = function(r) {
                 var data = [['Category', 'Total', 'id']];
-                r.data.forEach(function(item) {
+                r.data.by_category.forEach(function(item) {
                     data.push([item.name, Math.abs(item.total), item.id]);
                 });
                 return data;
@@ -40,6 +41,7 @@ app.factory('Chart', ['$http', '$q', '$filter', '$mdToast', 'Model', 'utils',
                     }
 
                     chart.chart.data = data;
+                    chart.chart.total = Math.abs(r.data.total);
                 });
             };
 
@@ -48,6 +50,7 @@ app.factory('Chart', ['$http', '$q', '$filter', '$mdToast', 'Model', 'utils',
                     chart.getStatisticsForCategory(categoryId, timeRange).then(function(r) {
                         chart.chart = {
                             data: chart.convertResponseToChartData(r),
+                            total: Math.abs(r.data.total),
                             type: 'PieChart',
                             options: {
                                 height: 300,

@@ -154,6 +154,11 @@ div#summary-chart > div, div#summary-chart > div > div {
     margin-left: 25px;
 }
 
+div.summary-chart-total {
+    width: 100%;
+    text-align: center;
+}
+
 month-chart, md-card.month-chart-card {
     width: 95%;
     height: 300px;

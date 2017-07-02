@@ -28,22 +28,23 @@ class TransactionViewSet(BaseModelViewSet):
 
     def _get_stats(self, user, categories, date_range=None):
         statistics = []
-
+        total = 0
         for category in categories:
-            total = (Transaction.objects.filter(category_id__in=category.get_descendants(include_self=True)
+            subtotal = (Transaction.objects.filter(category_id__in=category.get_descendants(include_self=True)
                                                                         .values_list('id', flat=True),
                                                 total__lt=0,
                                                 user=user))
             if date_range:
-                total = total.filter(date__gte=date_range[0],
+                subtotal = subtotal.filter(date__gte=date_range[0],
                                      date__lte=date_range[1])
 
-            total = total.aggregate(t=models.Sum('total'))['t']
-            if not total:
+            subtotal = subtotal.aggregate(t=models.Sum('total'))['t']
+            if not subtotal:
                 continue
-            statistics.append({'id': category.id, 'name': category.name, 'total': total})
+            total += subtotal
+            statistics.append({'id': category.id, 'name': category.name, 'total': subtotal})
 
-        return statistics
+        return {'by_category': statistics, 'total': total}
 
     @list_route(methods=['get'])
     def statistics(self, request):
