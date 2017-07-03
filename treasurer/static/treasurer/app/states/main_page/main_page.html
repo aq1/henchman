@@ -67,8 +67,8 @@
             </div>
          </div>
       </md-tab>
-      <md-tab label="Charts">
-         <charts-tab></charts-tab>
+      <md-tab label="Charts" ng-click="showStatsForYear = true">
+         <charts-tab ng-if="showStatsForYear"></charts-tab>
       </md-tab>
       <!--<md-tab label="Settings">-->
          <!--<settings></settings>-->
