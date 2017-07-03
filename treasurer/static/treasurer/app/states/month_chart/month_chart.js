@@ -15,7 +15,7 @@ app.directive('monthChart', function() {
 
                 var convertResponseToChartData = function(r) {
                     var data = [['Category', 'Total', {role: 'annotation'}]];
-                    r.data.forEach(function(item) {
+                    r.data.by_category.forEach(function(item) {
                         data.push([item.name, Math.abs(item.total), item.name]);
                     });
                     if (data.length === 1) {
@@ -36,6 +36,7 @@ app.directive('monthChart', function() {
                     }
                     $scope.chart = {
                         data: data,
+                        total: r.data.total,
                         type: 'BarChart',
                         options: {
                             legend: {position: 'none'},

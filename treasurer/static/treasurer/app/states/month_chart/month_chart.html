@@ -2,7 +2,7 @@
     <md-card-content>
         <h3>{{ month }}</h3>
         <p>
-            <div google-chart ng-show="chart" chart="chart"></div>
+            <div google-chart ng-if="chart" chart="chart"></div>
             <div ng-hide="chart">
                 No data
             </div>
