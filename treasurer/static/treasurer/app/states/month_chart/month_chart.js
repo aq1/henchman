@@ -36,7 +36,7 @@ app.directive('monthChart', function() {
                     }
                     $scope.chart = {
                         data: data,
-                        total: r.data.total,
+                        total: Math.abs(r.data.total),
                         type: 'BarChart',
                         options: {
                             legend: {position: 'none'},
