@@ -6,6 +6,6 @@
     </div>
     <div google-chart ng-show="chart" chart="chart" agc-on-select="select(selectedItem)"></div>
     <div class="summary-chart-total">
-        <h3>{{ chart.total }}</h3>
+        <h3>{{ chart.total | number : 2 }}</h3>
     </div>
 </div>
