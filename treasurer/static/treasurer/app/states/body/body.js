@@ -34,7 +34,8 @@ app.controller('BodyCtrl', ['$scope', '$http', '$timeout', 'AuthorizationService
         });
 
         $scope.positiveBalance = function(acc) {
-            return (acc.total >= acc.limit);
+            // Return true if balance is positive and it's not a credit account.
+            return (acc.total >= acc.limit && acc.limit == 0);
         };
 
         var init = function() {
