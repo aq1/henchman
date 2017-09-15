@@ -45,6 +45,7 @@ app.directive('modelFormField', function() {
                             recentChoicesIDs.splice(index, 1);
                         }
                         recentChoicesIDs.splice(0, 0, i);
+                        recentChoicesIDs = recentChoicesIDs.splice(0, 5);
                         window.localStorage[key] = JSON.stringify(recentChoicesIDs);
                     });
                 });
