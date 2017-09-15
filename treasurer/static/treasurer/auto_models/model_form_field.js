@@ -17,7 +17,7 @@ app.directive('modelFormField', function() {
                 });
             }
         },
-        controller: ['$scope', '$http', 'Model', 'ModelDialog', function($scope, $http, Model, ModelDialog) {
+        controller: ['$scope', '$http', 'utils', 'Model', 'ModelDialog', function($scope, $http, utils, Model, ModelDialog) {
             $scope.inputType = ({
                 FloatField: 'number',
                 IntegerField: 'number',
@@ -32,6 +32,21 @@ app.directive('modelFormField', function() {
                 var model = new Model($scope.field.config);
                 model.query({all: 1}).then(function(r) {
                     $scope.items = r.data;
+                    $scope.recentChoices = [];
+                    var key = $scope.field.config.model + '.' + $scope.field.name;
+                    var recentChoicesIDs = JSON.parse(window.localStorage[key] || '[]');
+                    recentChoicesIDs.forEach(function (i) {
+                        $scope.recentChoices.push(utils.findInArray($scope.items, 'id', parseInt(i)));
+                    });
+                    $scope.$on('Form Submitted', function() {
+                        var i = parseInt($scope.item[$scope.field.name]);
+                        var index = recentChoicesIDs.indexOf(i);
+                        if (index >= 0) {
+                            recentChoicesIDs.splice(index, 1);
+                        }
+                        recentChoicesIDs.splice(0, 0, i);
+                        window.localStorage[key] = JSON.stringify(recentChoicesIDs);
+                    });
                 });
             };
 

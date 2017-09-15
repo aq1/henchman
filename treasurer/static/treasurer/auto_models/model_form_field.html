@@ -31,5 +31,8 @@
                 {{ '-'.repeat(item.level || 0) + ' ' }}{{ item.name }}
             </md-option>
         </md-select>
+        <md-button class="recent-choice" ng-click="item[field.name] = choice.id" ng-repeat="choice in recentChoices">
+            {{ choice.name }}
+        </md-button>
     </div>
 </md-input-container>

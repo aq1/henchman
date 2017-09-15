@@ -171,3 +171,8 @@ month-chart {
 md-card.month-chart-card md-card-content {
     padding-top: 0;
 }
+
+.recent-choice {
+    margin: 0;
+    text-transform: none;
+}

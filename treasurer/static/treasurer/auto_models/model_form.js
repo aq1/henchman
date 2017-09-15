@@ -31,6 +31,7 @@ app.directive('modelForm', function() {
             $scope.save = function() {
                 $scope.Model.save($scope.item).then(function(r) {
                     $rootScope.$broadcast($scope.modelName + ':saved', r.data);
+                    $rootScope.$broadcast('Form Submitted');
                     if ($scope.cancelCallback) {
                         $scope.cancelCallback();
                     }
