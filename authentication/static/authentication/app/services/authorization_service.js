@@ -25,6 +25,7 @@ app.service('AuthorizationService', ['$q', '$http', '$rootScope', '$mdDialog',
     };
     this.logout = function () {
         $http.get('/auth/api-auth/logout/').then(function () {
+            localStorage.clear();
             service.setToken('');
             service.setUser(null);
         });
