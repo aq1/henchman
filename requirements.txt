@@ -3,3 +3,4 @@ Django
 djangorestframework
 django-mptt
 pytz
+puput
