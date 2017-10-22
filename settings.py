@@ -134,6 +134,9 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'authentication.User'
+PUPUT_USERNAME_FIELD = 'email'
+PUPUT_USERNAME_REGEX = '.+?@.+?\..+'
+
 APPEND_SLASH = False
 
 try:
