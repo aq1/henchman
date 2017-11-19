@@ -69,3 +69,4 @@ bower_components
 local_settings.py
 */static/*/models.js
 node_modules/
+n.py

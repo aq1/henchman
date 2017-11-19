@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apps</title>
+</head>
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'apps_router/css/router.css' %}">
+<body>
+<div class="wrapper">
+    <a class="button" href="{% url 'blog_index' %}">Блог</a>
+    <a class="button" href="{% url 'index' %}">Финансы</a>
+</div>
+</body>
+</html>

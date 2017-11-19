@@ -3,4 +3,5 @@ Django
 djangorestframework
 django-mptt
 pytz
-puput
+markdown
+bleach

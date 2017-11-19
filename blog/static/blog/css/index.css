@@ -1,0 +1,139 @@
+html, body {
+    font: 16px/24px "PT Serif", sans-serif;
+    height: 100%;
+}
+
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+
+.group:after {
+    clear: both;
+}
+
+.group {
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+#header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 70px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#header div.group div {
+    width: 32%;
+    /*border: 1px solid #05AFCB;*/
+}
+
+#header div.filler {
+    float: left;
+}
+
+#header button.write-button {
+    position: relative;
+    bottom: 10px;
+    padding: 10px 16px;
+    border-radius: 15%;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
+    background-clip: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+}
+
+#header button.write-button:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#header div.blog-title {
+    top: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#header div.user {
+    position: absolute;
+    height: 70px;
+    right: 0;
+    top: 50%;
+    margin-top: -20px;
+    float: right;
+    text-align: right;
+    padding-right: 25px;
+}
+
+#header div.user img {
+    max-height: 35px;
+    border-radius: 50%;
+}
+
+#body {
+    margin-top: 120px;
+}
+
+div.post-container {
+    width: 100%;
+    min-height: 200px;
+    margin-bottom: 20px;
+}
+
+div.post-container div.post,
+div.post-container div.comments {
+    min-height: 380px;
+    max-height: 380px;
+    height: inherit;
+    padding: 10px;
+    overflow-y: hidden;
+
+}
+
+div.post-container div.post {
+    float: left;
+    width: 55%;
+    margin-left: 25px;
+    border-left: 5px solid #FC5382;
+    /*background-color: aquamarine;*/
+}
+
+div.post-container div.comments {
+    margin-right: 25px;
+    float: right;
+    width: 35%;
+    /*background-color: darkcyan;*/
+}
+
+div.post-container div.post .title {
+    margin: 0;
+    padding: 0;
+}
+
+div.post-container div.post .post-author {
+    opacity: 0.5;
+    font-size: 13px;
+}
+
+div.post-container div.post p {
+    margin: 8px 0;
+}
+
+div.post-container:last-child hr {
+    display: none;
+}
+
+div.post-container hr {
+    width: 70%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: none;
+    color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 1px;
+}

@@ -37,8 +37,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     email = models.EmailField(unique=True)
 
-    first_name = models.CharField(max_length=255, blank=True, null=True)
-    last_name = models.CharField(max_length=255, blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
+
+    first_name = models.CharField(max_length=255, blank=True, default='')
+    last_name = models.CharField(max_length=255, blank=True, default='')
 
     sex = models.NullBooleanField(blank=True, null=True, choices=SEX)
     birthday = models.DateField(blank=True, null=True)
@@ -76,3 +78,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.first_name
+
+    def __str__(self):
+        return self.get_full_name().strip() or self.email

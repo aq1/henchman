@@ -1,7 +1,5 @@
 import os
 
-from puput import PUPUT_APPS
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -34,10 +32,11 @@ INSTALLED_APPS = [
     'mptt',
 
     'authentication.apps.AuthenticationConfig',
+    'apps_router.apps.AppsRouterConfig',
     'treasurer.apps.TreasurerConfig',
+    'blog.apps.BlogConfig',
     'utils.apps.UtilsConfig',
 ]
-INSTALLED_APPS += PUPUT_APPS
 
 
 UTILS_APPS_TO_WATCH = ['authentication', 'treasurer']
@@ -51,8 +50,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'wagtail.wagtailcore.middleware.SiteMiddleware',
-    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'urls'
@@ -111,8 +108,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-WAGTAIL_SITE_NAME = 'FNV blog'
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
@@ -134,8 +129,7 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'authentication.User'
-PUPUT_USERNAME_FIELD = 'email'
-PUPUT_USERNAME_REGEX = '.+?@.+?\..+'
+LOGIN_URL = '/admin/login/'
 
 APPEND_SLASH = False
 

@@ -33,14 +33,14 @@ class HenchmanUserAdmin(UserAdmin):
     form = HenchmanUserChangeForm
     add_form = HenchmanUserCreationForm
 
-    list_display = ['email', 'last_name', 'first_name', 'is_staff']
+    list_display = ['email', 'get_full_name', 'is_staff']
     search_fields = ['email', 'last_name', 'first_name']
     ordering = ['id']
     filter_horizontal = ()
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {
-            'fields': ('last_name', 'first_name', 'birthday', 'sex')}),
+            'fields': ('avatar', 'first_name', 'last_name', 'birthday', 'sex')}),
         ('Administration', {
             'fields': ('is_admin', 'is_staff', 'is_superuser')}),
     )

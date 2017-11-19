@@ -1,0 +1,23 @@
+.wrapper {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    background-color: #05AFCB;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button:hover {
+    cursor: pointer;
+}

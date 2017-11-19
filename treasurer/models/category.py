@@ -35,7 +35,10 @@ class Category(MPTTModel):
         fixture = os.path.join(settings.BASE_DIR, 'treasurer', 'fixtures', 'category.json')
         with open(fixture, 'rb') as f:
             categories = json.loads(f.read().decode('utf8'))
-        max_id = Category.objects.order_by('-id').first().id
+        try:
+            max_id = Category.objects.order_by('-id').first().id
+        except AttributeError:
+            max_id = 1
         for each in categories:
             parent_id = None
             id_ = max_id + each['pk']

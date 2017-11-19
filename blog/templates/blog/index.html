@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block body %}
+<div id="header">
+    <div class="group">
+        <div class="filler"></div>
+        <div class="user">
+            <img src="{% get_media_prefix %}{{ view.request.user.avatar }}">
+            <a href="{% url 'write_post' %}"><button class="write-button">Write</button></a>
+        </div>
+        <div class="blog-title">
+            <h1>
+                Our Secret Blog
+            </h1>
+        </div>
+    </div>
+</div>
+<div id="body">
+    {% for post in posts %}
+        <div class="post-container">
+            <div class="group">
+                <div class="post">
+                    <h2 class="title">
+                        {{ post.title }}
+                    </h2>
+                    <span class="post-author">
+                            {{ post.user }}
+                            {{ post.created | date }}
+                        </span>
+                    <div>
+                        {{ post.rendered_body | safe }}
+                    </div>
+                </div>
+                <div class="comments">
+                    <div class="comment">
+                        Comment 1
+                    </div>
+                    <div class="comment">
+                        Comment 2
+                    </div>
+                    <div class="comment">
+                        Comment 3
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    {% endfor %}
+</div>
+{% endblock body %}
