@@ -5,9 +5,11 @@
     <div class="post-container">
         <div class="group">
             <div class="post">
-                <h2 class="title">
-                    {{ post.title }}
-                </h2>
+                <a href="{% url 'view_post' post.pk %}">
+                    <h2 class="title">
+                        {{ post.title }}
+                    </h2>
+                </a>
                 <span class="post-author">
                         {{ post.user }}
                         {{ post.created | date }}

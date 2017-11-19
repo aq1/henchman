@@ -3,6 +3,14 @@ html, body {
     height: 100%;
 }
 
+a,
+a:hover {
+    font: inherit;
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+}
+
 .group:before,
 .group:after {
     content: "";

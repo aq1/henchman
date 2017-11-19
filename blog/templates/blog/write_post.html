@@ -6,12 +6,12 @@
             {% csrf_token %}
             <div class="title">
                 <label for="title">
-                    <input type="text" name="title" placeholder="Title" required>
+                    <input type="text" name="title" placeholder="Title" value="{{ post.title }}" required>
                 </label>
             </div>
             <div class="body">
                 <label for="body">
-                    <textarea name="body" required></textarea>
+                    <textarea name="body" required>{{ post.body }}</textarea>
                 </label>
             </div>
             <div class="submit">
