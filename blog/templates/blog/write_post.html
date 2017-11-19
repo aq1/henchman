@@ -1,5 +1,24 @@
 {% extends 'blog/base.html' %}
 
 {% block body %}
-    Oh, hi Mark!
+    <div class="post-view">
+        <form action="{% url 'submit_post' post.pk %}" method="post">
+            {% csrf_token %}
+            <div class="title">
+                <label for="title">
+                    <input type="text" name="title" placeholder="Title" required>
+                </label>
+            </div>
+            <div class="body">
+                <label for="body">
+                    <textarea name="body" required></textarea>
+                </label>
+            </div>
+            <div class="submit">
+                <button type="submit" class="action-button">
+                    Write
+                </button>
+            </div>
+        </form>
+    </div>
 {% endblock body %}

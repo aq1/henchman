@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block body %}
+    <div class="post-view">
+        <div class="title">
+            <h1>{{ post.title }}</h1>
+        </div>
+        <div class="body">
+            {{ post.rendered_body | safe }}
+        </div>
+        <div class="comments">
+            <span>
+                Comments
+            </span>
+            <div>
+            <span>
+                coming soon...
+            </span>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -1,8 +1,8 @@
-from blog.views import BaseView
+from blog.views import BaseTemplateView
 from blog.models import Post
 
 
-class Index(BaseView):
+class Index(BaseTemplateView):
     template_name = 'blog/index.html'
 
     def get_context_data(self, **kwargs):

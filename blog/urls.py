@@ -5,5 +5,7 @@ from blog import views
 
 urlpatterns = [
     url(r'^$', views.Index.as_view(), name='blog_index'),
-    url(r'^write/$', views.WritePost.as_view(), name='write_post'),
+    url(r'^p/(?P<pk>\d+)/$', views.ViewPost.as_view(), name='view_post'),
+    url(r'^write/(?P<pk>\d+)?/?$', views.WritePost.as_view(), name='write_post'),
+    url(r'^submit_post/(?P<pk>\d+)?/?$', views.SubmitPost.as_view(), name='submit_post'),
 ]
