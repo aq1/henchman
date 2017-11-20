@@ -1,5 +1,7 @@
 {% extends 'blog/base.html' %}
 
+{% load static %}
+
 {% block body %}
 {% for post in posts %}
     <div class="post-container">
@@ -19,6 +21,17 @@
                 </div>
             </div>
             <div class="comments">
+                {% for comment in post.comments %}
+                    <div class="comment" style="border-color: #{{ comment.user.spiritual_coloring }}">
+                        <div class="comment-user-avatar">
+                            <img src="{% get_media_prefix %}{{ comment.user.avatar }}" alt="">
+                        </div>
+                        <div class="comment-body">
+                            <p><span class="comment-user-name">{{ comment.user }}</span></p>
+                            <p>{{ comment.body }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <hr>

@@ -111,8 +111,8 @@ div.post-container {
 
 div.post-container div.post,
 div.post-container div.comments {
-    min-height: 380px;
-    max-height: 380px;
+    min-height: 360px;
+    max-height: 360px;
     height: inherit;
     padding: 10px;
     overflow-y: hidden;
@@ -165,6 +165,49 @@ div.post-container hr {
     background-color: rgba(0, 0, 0, 0.1);
     height: 2px;
 }
+
+div.comments div.comment {
+    /*border: 1px solid rgba(0, 0, 0, 0.2);*/
+    border-left: 1px solid;
+    padding: 5px;
+    height: 100px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+div.comments div.comment p {
+    margin: 0;
+}
+
+div.comments div.comment div.comment-body {
+    /*position: relative;*/
+    /*top: 0;*/
+    display: inline-block;
+    /*border: 1px solid #FC5382;*/
+    overflow: hidden;
+    width: 80%;
+}
+
+div.comments div.comment div.comment-user-avatar {
+    width: 15%;
+    margin-right: 15px;
+    position: relative;
+    /*margin-top: 5px;*/
+    float: left;
+    display: inline-block;
+    /*border: 1px solid #02CCBA;*/
+}
+
+div.comments div.comment span.comment-user-name {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+div.comments div.comment-user-avatar img {
+    border-radius: 50%;
+    height: 60px;
+}
+
 
 div.post-view {
     width: 50%;
