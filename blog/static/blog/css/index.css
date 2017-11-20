@@ -8,7 +8,6 @@ a:hover {
     font: inherit;
     color: inherit;
     outline: none;
-    text-decoration: none;
 }
 
 .group:before,
@@ -122,14 +121,20 @@ div.post-container div.post {
     /*background-color: aquamarine;*/
 }
 
+div.post-container div.post {
+}
+
 div.post-container div.comments {
     margin-right: 25px;
     float: right;
     width: 35%;
     /*background-color: darkcyan;*/
 }
+div.post-container div.post a.title {
+    text-decoration: none;
+}
 
-div.post-container div.post .title {
+div.post-container div.post .title h2 {
     margin: 0;
     padding: 0;
 }
