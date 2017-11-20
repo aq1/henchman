@@ -3,38 +3,45 @@
 {% load static %}
 
 {% block body %}
-{% for post in posts %}
-    <div class="post-container">
-        <div class="group">
-            <div class="post" style="border-color: #{{ post.user.spiritual_coloring }}">
-                <a href="{% url 'view_post' post.pk %}" class="title">
-                    <h2>
+    {% for post in posts %}
+        <div class="post-container">
+            <div class="group">
+                <div class="post" style="border-color: #{{ post.user.spiritual_coloring }}">
+                    <a href="{% url 'view_post' post.pk %}">
+                    <span class="title">
                         {{ post.title }}
-                    </h2>
-                </a>
-                <span class="post-author">
+                    </span>
+                    </a>
+                    {% if post.user == view.request.user %}
+                        <a href="{% url 'write_post' post.pk %}">
+                            <span class="edit-post-link">edit</span>
+                        </a>
+                    {% endif %}
+                    <div>
+                    <span class="post-author">
                         {{ post.user }}
                         {{ post.created | date }}
                     </span>
-                <div>
-                    {{ post.rendered_body | safe }}
+                    </div>
+                    <div>
+                        {{ post.rendered_body | safe }}
+                    </div>
+                </div>
+                <div class="comments">
+                    {% for comment in post.comments %}
+                        <div class="comment" style="border-color: #{{ comment.user.spiritual_coloring }}">
+                            <div class="comment-user-avatar">
+                                <img src="{% get_media_prefix %}{{ comment.user.avatar }}" alt="">
+                            </div>
+                            <div class="comment-body">
+                                <p><span class="comment-user-name">{{ comment.user }}</span></p>
+                                <p>{{ comment.body }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-            <div class="comments">
-                {% for comment in post.comments %}
-                    <div class="comment" style="border-color: #{{ comment.user.spiritual_coloring }}">
-                        <div class="comment-user-avatar">
-                            <img src="{% get_media_prefix %}{{ comment.user.avatar }}" alt="">
-                        </div>
-                        <div class="comment-body">
-                            <p><span class="comment-user-name">{{ comment.user }}</span></p>
-                            <p>{{ comment.body }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+            <hr>
         </div>
-        <hr>
-    </div>
-{% endfor %}
+    {% endfor %}
 {% endblock body %}
