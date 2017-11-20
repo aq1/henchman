@@ -10,5 +10,5 @@ class Index(BaseTemplateView):
         kwargs.update(super().get_context_data(**kwargs))
         kwargs['posts'] = Post.objects.all().select_related('user')[:5]
         for post in kwargs['posts']:
-            post.comments = Comment.objects.select_related('user').filter(post=post)[:3]
+            post.comments = reversed(Comment.objects.select_related('user').filter(post=post).order_by('-id')[:3])
         return kwargs

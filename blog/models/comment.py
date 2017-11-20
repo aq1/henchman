@@ -15,7 +15,7 @@ class Comment(models.Model):
     edited = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-created']
+        ordering = ['id']
 
     def __str__(self):
         return 'Comment by {user} to {post}'.format(

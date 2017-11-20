@@ -1,5 +1,7 @@
 {% extends 'blog/base.html' %}
 
+{% load static %}
+
 {% block body %}
     <div class="post-view">
         <div class="title">
@@ -8,15 +10,37 @@
         <div class="body">
             {{ post.rendered_body | safe }}
         </div>
+        <hr>
         <div class="comments">
-            <span>
-                Comments
-            </span>
-            <div>
-            <span>
-                coming soon...
-            </span>
-            </div>
+            {% for comment in comments %}
+                <div class="group" style="border-color: #{{ comment.user.spiritual_coloring }}">
+                    <div class="comment-user-avatar">
+                        <img src="{% get_media_prefix %}{{ comment.user.avatar }}" alt="">
+                    </div>
+                    <div class="comment-body">
+                        <p>
+                            <span class="comment-user-name">
+                                {{ comment.user }}
+                                {{ comment.created | date }}
+                            </span>
+                        </p>
+                        <p>{{ comment.body }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="comment-form">
+            <form action="{% url 'submit_comment' post.pk %}" method="post">
+                {% csrf_token %}
+                <label>
+                    <textarea class="comment" name="body" placeholder="Comment..."></textarea>
+                </label>
+                <div class="submit">
+                    <button type="submit" class="action-button">
+                        Comment
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock body %}

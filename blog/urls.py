@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^p/(?P<pk>\d+)/$', views.ViewPost.as_view(), name='view_post'),
     url(r'^write/(?P<pk>\d+)?/?$', views.WritePost.as_view(), name='write_post'),
     url(r'^submit_post/(?P<pk>\d+)?/?$', views.SubmitPost.as_view(), name='submit_post'),
+    url(r'^p/(?P<post_pk>\d+)/comment/$', views.SubmitComment.as_view(), name='submit_comment'),
 ]

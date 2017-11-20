@@ -55,7 +55,7 @@ a:hover {
 
 button.action-button {
     padding: 10px 16px;
-    border-radius: 15%;
+    border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.4);
     color: rgba(0, 0, 0, 0.7);
     background-color: transparent;
@@ -224,8 +224,35 @@ div.post-view div.comments {
     margin-top: 50px;
 }
 
+div.post-view div.comments div.group {
+    margin-bottom: 20px;
+    border-left: 1px solid;
+}
+
 div.post-view div.comments span {
     color: rgba(0, 0, 0, 0.4);
+}
+
+div.post-view div.comments {
+    overflow: hidden;
+    word-break: break-all;
+}
+
+div.post-view div.comments div.group div {
+    display: inline-block;
+}
+
+div.post-view div.comments div.group div p {
+    margin: 0;
+}
+
+div.post-view div.comments div.group div.comment-user-avatar {
+    float: left;
+    width: 10%;
+}
+
+div.post-view div.comments div.group div.comment-body {
+    width: 89%;
 }
 
 div.title {
@@ -245,7 +272,7 @@ div.post-view div.title input:focus {
     outline: none;
 }
 
-div.post-view div.body textarea {
+div.post-view textarea {
     font-family: inherit;
     font-size: 20px;
     box-sizing: border-box;
@@ -257,6 +284,13 @@ div.post-view div.body textarea {
     resize: none;
 }
 
+div.post-view textarea.comment {
+    margin-top: 25px;
+    height: 200px;
+}
+
+
 div.post-view div.submit {
+    text-align: right;
     margin-top: 10px;
 }
