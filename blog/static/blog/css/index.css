@@ -149,7 +149,7 @@ div.post-container div.post .edit-post-link {
     color: rgba(0, 0, 0, 0.4);
 }
 
-div.post-container div.post .post-author {
+span.post-author {
     opacity: 0.5;
     font-size: 13px;
 }
@@ -273,6 +273,11 @@ div.post-view div.title input:focus {
     outline: none;
 }
 
+div.post-view div.post {
+    border-left: 2px solid;
+    padding-left: 10px;
+}
+
 div.post-view textarea {
     font-family: inherit;
     font-size: 20px;
@@ -294,4 +299,8 @@ div.post-view textarea.comment {
 div.post-view div.submit {
     text-align: right;
     margin-top: 10px;
+}
+
+div.post-view div.title h1 {
+    margin-bottom: 0;
 }

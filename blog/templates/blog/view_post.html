@@ -4,11 +4,17 @@
 
 {% block body %}
     <div class="post-view">
-        <div class="title">
-            <h1>{{ post.title }}</h1>
-        </div>
-        <div class="body">
-            {{ post.rendered_body | safe }}
+        <div class="post" style="border-color: #{{ post.user.spiritual_coloring }}">
+            <div class="title">
+                <h1>{{ post.title }}</h1>
+                <span class="post-author">
+                    {{ post.user }}
+                    {{ post.created | date }}
+                </span>
+            </div>
+            <div class="body">
+                {{ post.rendered_body | safe }}
+            </div>
         </div>
         <hr>
         <div class="comments">
