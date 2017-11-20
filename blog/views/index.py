@@ -7,5 +7,5 @@ class Index(BaseTemplateView):
 
     def get_context_data(self, **kwargs):
         kwargs.update(super().get_context_data(**kwargs))
-        kwargs['posts'] = Post.objects.all()[:5]
+        kwargs['posts'] = Post.objects.all().select_related('user')[:5]
         return kwargs

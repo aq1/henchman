@@ -110,15 +110,13 @@ div.post-container div.comments {
     height: inherit;
     padding: 10px;
     overflow-y: hidden;
-
 }
 
 div.post-container div.post {
     float: left;
     width: 55%;
     margin-left: 25px;
-    border-left: 5px solid #FC5382;
-    /*background-color: aquamarine;*/
+    border-left: 2px solid rgba(252, 83, 130, 0.7);
 }
 
 div.post-container div.post {
@@ -159,7 +157,7 @@ div.post-container hr {
     border: none;
     color: rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.1);
-    height: 1px;
+    height: 2px;
 }
 
 div.post-view {

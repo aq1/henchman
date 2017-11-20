@@ -17,8 +17,12 @@
     <div class="group">
         <div class="filler"></div>
         <div class="user">
-            <img src="{% get_media_prefix %}{{ view.request.user.avatar }}">
-            <a href="{% url 'write_post' %}"><button class="action-button">Write</button></a>
+            <img src="{% get_media_prefix %}{{ view.request.user.avatar }}" alt="">
+            <a href="{% url 'write_post' %}">
+                <button class="action-button">
+                    Write
+                </button>
+            </a>
         </div>
         <div class="blog-title">
             <a href="{% url 'blog_index' %}">
