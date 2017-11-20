@@ -1,6 +1,7 @@
 html, body {
     font: 16px/24px "PT Serif", sans-serif;
     height: 100%;
+    outline: none;
 }
 
 a,
@@ -36,6 +37,11 @@ a:hover {
 #header div.group div {
     width: 32%;
     /*border: 1px solid #05AFCB;*/
+}
+
+#header div.user a {
+    text-decoration: none;
+    outline: none;
 }
 
 #header div.filler {

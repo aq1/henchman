@@ -17,7 +17,9 @@
     <div class="group">
         <div class="filler"></div>
         <div class="user">
-            <img src="{% get_media_prefix %}{{ view.request.user.avatar }}" alt="">
+            <a href="{% url 'admin:authentication_user_change' view.request.user.pk %}">
+                <img src="{% get_media_prefix %}{{ view.request.user.avatar }}" alt="">
+            </a>
             <a href="{% url 'write_post' %}">
                 <button class="action-button">
                     Write
