@@ -40,7 +40,7 @@ class HenchmanUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {
-            'fields': ('avatar', 'first_name', 'last_name', 'birthday', 'sex')}),
+            'fields': ('avatar', 'first_name', 'last_name', 'birthday', 'sex', 'spiritual_coloring')}),
         ('Administration', {
             'fields': ('is_admin', 'is_staff', 'is_superuser', 'groups')}),
     )

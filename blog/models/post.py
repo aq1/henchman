@@ -14,7 +14,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=255)
     body = models.TextField()
-    rendered_body = models.TextField(default='')
+    rendered_body = models.TextField(default='', blank=True)
 
     class Meta:
         ordering = ['-created']

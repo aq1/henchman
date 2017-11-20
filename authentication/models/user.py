@@ -35,6 +35,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         (FEMALE, 'Female')
     )
 
+    COLORS = (
+        ('e24e42', 'Papaya'),
+        ('e8b000', 'Mustard'),
+        ('eb6e80', 'Blush'),
+        ('008f95', 'Aqua'),
+    )
+
     email = models.EmailField(unique=True)
 
     avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
@@ -50,6 +57,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(blank=True, default=True)
 
     date_joined = models.DateField(blank=True, auto_now_add=True)
+
+    spiritual_coloring = models.CharField(max_length=6, choices=COLORS, blank=True, default='e24e42')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

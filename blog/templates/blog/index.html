@@ -4,7 +4,7 @@
 {% for post in posts %}
     <div class="post-container">
         <div class="group">
-            <div class="post">
+            <div class="post" style="border-color: #{{ post.user.spiritual_coloring }}">
                 <a href="{% url 'view_post' post.pk %}" class="title">
                     <h2>
                         {{ post.title }}
