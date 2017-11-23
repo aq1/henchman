@@ -304,3 +304,7 @@ div.post-view div.submit {
 div.post-view div.title h1 {
     margin-bottom: 0;
 }
+
+div.post div.body img {
+    max-width: 100%;
+}
