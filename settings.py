@@ -133,6 +133,9 @@ LOGIN_URL = '/admin/login/'
 
 APPEND_SLASH = False
 
+VK_CHAT_ID = ''
+VK_TOKEN = ''
+
 try:
     from local_settings import *
 except ImportError:

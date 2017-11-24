@@ -1,8 +1,11 @@
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 import bleach
 import markdown
+import requests
 
 
 class Post(models.Model):
@@ -25,3 +28,22 @@ class Post(models.Model):
 
     def __str__(self):
         return '{}'.format(self.title)
+
+
+@receiver(post_save, sender=Post)
+def send_notification_in_vk_chat(instance, created, **kwargs):
+    if not created:
+        return
+    try:
+        requests.post(
+            'https://api.vk.com/method/messages.send',
+            data={
+                'chat_id': settings.VK_CHAT_ID,
+                'message': '{} добавил новую запись в блог!'.format(instance.user),
+            },
+            params={
+                'access_token': settings.VK_TOKEN,
+            }
+        )
+    except requests.RequestException:
+        pass
