@@ -215,8 +215,10 @@ div.comments div.comment-user-avatar img {
 
 
 div.post-view {
-    width: 50%;
+    width: 55%;
     margin: 0 auto;
+    text-align: justify;
+    line-height: 1.5;
 }
 
 div.post-view div.comments {
@@ -258,6 +260,8 @@ div.post-view div.comments div.group div.comment-body {
 
 div.title {
     margin-bottom: 20px;
+    text-align: left;
+    line-height: 1.2;
 }
 
 div.post-view div.title input {
